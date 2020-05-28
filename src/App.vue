@@ -1,12 +1,27 @@
 <template>
   <div id="app">
-    <header id="pageHeader">
+    <header id="page-header">
       Список задач
     </header>
-		<article id="mainArticle">
-     
+		<article id="main-article">
+      <div class="tasks">
+        <div class="tasks__header">
+          Первоочередные задачи
+        </div>
+        <div class="tasks__body">
+
+        </div>
+      </div>
+      <div class="task-list">
+        <div class="task-list__header">
+          Списки задач
+        </div>
+        <div class="task-list__body">
+
+        </div>
+      </div>
     </article>
-		<nav id="mainNav">
+		<nav id="main-nav">
       <div class="button">
         Создать новую задачу
       </div>
@@ -14,8 +29,8 @@
         Создать новый список задач
       </div>
     </nav>
-	<footer id="pageFooter">
-    
+	<footer id="page-footer">
+    ustimenkodenis@mail.ru
   </footer>
   </div>
 </template>
@@ -43,6 +58,7 @@ export default {
     grid-column-gap: 10px;
     height: 100vh;
     margin: 0;
+    padding: 0;
   }
 
   @media (max-width: 575px) {
@@ -66,7 +82,7 @@ export default {
       border-radius: 5px;
   }
  
-  #pageHeader {
+  #page-header {
     grid-area: header;
     background: #bbdefb; 
     color: #fff;
@@ -75,18 +91,54 @@ export default {
     justify-content: center;
     align-items: center;
   }
-  #pageFooter {
-      grid-area: footer;
-      background: #bbdefb  
-
+  #page-footer {
+    grid-area: footer;
+    background: #bbdefb;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 25px;
   }
-  #mainArticle {
-      grid-area: article;
-      background: #fff ;
+  #main-article {
+    grid-area: article;
+    background: #fff ;
+    display: grid;
+    grid-template-areas:
+    "tasks"
+    "taskList";
+    grid-template-rows: 0.5fr 0.5fr;
+    grid-template-columns: 1fr;
+    grid-row-gap: 10px;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
   }
-  #mainNav {
-      grid-area: nav;
-      background: #b2dfdb;
+    .tasks {
+      grid-area: tasks; 
+      padding: 0;
+      margin: 0;
+      border: 1px solid #bbdefb;
+      border-radius: 5px;       
+    }
+      .tasks__header {
+        color:#90caf9 ;
+        font-size: 20px;
+      }
+    .task-list {
+      grid-area: taskList;
+      padding: 0;
+      margin: 0;
+      border: 1px solid #bbdefb;
+      border-radius: 5px;      
+    }
+      .task-list__header {
+        color:#90caf9 ;
+        font-size: 20px;
+      }
+  #main-nav {
+    grid-area: nav;
+    background: #b2dfdb;
   }
     .button {
       position: relative;
@@ -105,10 +157,13 @@ export default {
       }
     .button:hover {
       cursor: pointer;
-      box-shadow: 2px 2px 5px rgba(48, 134, 126, 0.658);
+      box-shadow: 0 2px 5px rgba(48, 134, 126, 0.658);
+      background: #80cbc381;
     }
     .button:active {
       top: 2px;
+       box-shadow: 0 0 0;
     }
+
 
 </style>
