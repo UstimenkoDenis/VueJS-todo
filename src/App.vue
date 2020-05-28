@@ -1,16 +1,21 @@
 <template>
   <div id="app">
     <header id="pageHeader">
-      Header
+      Список задач
     </header>
 		<article id="mainArticle">
-      Article
+     
     </article>
 		<nav id="mainNav">
-      Nav
+      <div class="button">
+        Создать новую задачу
+      </div>
+      <div class="button">
+        Создать новый список задач
+      </div>
     </nav>
 	<footer id="pageFooter">
-    Footer
+    
   </footer>
   </div>
 </template>
@@ -47,20 +52,28 @@ export default {
           "nav"
           "article"          
           "footer";
-          grid-template-rows: 30px 30px 1fr 30px;
+          grid-template-rows: 30px 120px 1fr 30px;
           grid-template-columns: 1fr;
+          
+      }
+      .button {
+        font-size: 8px;
       }
   }
   
   header, footer, article, nav, div {
       padding: 1.2rem;
-      border-radius: 0.3rem;
+      border-radius: 5px;
   }
  
   #pageHeader {
     grid-area: header;
-    background: #bbdefb 
-
+    background: #bbdefb; 
+    color: #fff;
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   #pageFooter {
       grid-area: footer;
@@ -75,5 +88,27 @@ export default {
       grid-area: nav;
       background: #b2dfdb;
   }
+    .button {
+      position: relative;
+      top: 0;
+      left: 0;
+      background: #80cbc4;
+      border-radius: 5px;
+      text-align: center;
+      color:#fff;
+      padding: 7px;
+      font-size: 20px;
+      transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+      .button:last-child {
+        margin-top: 7px;
+      }
+    .button:hover {
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(48, 134, 126, 0.658);
+    }
+    .button:active {
+      top: 2px;
+    }
 
 </style>
