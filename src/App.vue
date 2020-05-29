@@ -9,22 +9,18 @@
           <div class="tasks__header-title">
             Первоочередные задачи
           </div>
-          <div class="tasks__header-filter">
-            <input class = "input" type="text">
-          </div>
+          <ToDoFilter/>
         </div>
         <ul class="tasks__body">
           
-        </ul>
+        </ul>         
       </div>
       <div class="task-list">
         <div class="task-list__header">
           <div class="task-list__header-title">
             Списки задач
           </div>
-          <div class="task-list__header-filter">
-            <input class = "input" type="text">
-          </div>
+          <ToDoFilter/>
         </div>
         <ul class="task-list__body">
 
@@ -32,10 +28,10 @@
       </div>
     </article>
 		<nav class="main-nav">
-      <div class="button">
+      <div class="menu-button">
         Создать новую задачу
       </div>
-      <div class="button">
+      <div class="menu-button">
         Создать новый список задач
       </div>
     </nav>
@@ -46,11 +42,11 @@
 </template>
 
 <script>
-
+import ToDoFilter from '@/components/ToDoFilter/ToDoFilter'
 export default {
   name: 'App',
   components: {
-   
+    ToDoFilter
   }
 }
 </script>
@@ -82,8 +78,13 @@ export default {
           grid-template-columns: 1fr;
           
       }
-      .button {
+      .menu-button {
         font-size: 8px;
+      }
+  }
+  @media (max-width: 362px) {
+      .menu-button {
+        font-size: 2px;
       }
   }
   
@@ -135,22 +136,16 @@ export default {
     }
       .tasks__header {
         color:#90caf9 ;
-        font-size: 20px;
-        padding: 0;
+        font-size: 20px;        
+        display: flex;
+        flex-wrap: wrap;
+        padding: 1.2rem 1.2rem 0 1.2rem;
       }
         .tasks__header-title {
-          display:inline-block;
-          padding: 1.2rem 1.2rem 0 1.2rem;
+          display:inline-block;   
+          margin-right: 1.2rem;      
         }
-        .tasks__header-filter {
-          display: inline-flex;
-          flex-wrap: wrap;
-          padding: 1rem 1.2rem 0 1.2rem;
-        }
-        .input {
-          min-width: 25rem;
-          color: #90caf9
-        }
+        
       .tasks__body {
         flex-grow: 1;
       }
@@ -167,16 +162,14 @@ export default {
         color:#90caf9 ;
         font-size: 20px;
         padding: 0;
+        display: flex;
+        flex-wrap: wrap;      
+        padding: 1.2rem 1.2rem 0 1.2rem;
       }
         .task-list__header-title {
-          display:inline-block;
-          padding: 1.2rem 1.2rem 0 1.2rem;
-        }
-        .task-list__header-filter {
-          display: inline-flex;
-          flex-wrap: wrap;
-          padding: 1rem 1.2rem 0 1.2rem;
-        }
+          display:inline-block;   
+          margin-right: 1.2rem;   
+        }       
       .task-list__body {
         flex-grow: 1;
       }
@@ -184,7 +177,7 @@ export default {
     grid-area: nav;
     background: #b2dfdb;
   }
-    .button {
+    .menu-button {
       position: relative;
       top: 0;
       left: 0;
@@ -196,17 +189,17 @@ export default {
       font-size: 20px;
       transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     }
-      .button:last-child {
+      .menu-button:last-child {
         margin-top: 7px;
       }
-    .button:hover {
+    .menu-button:hover {
       cursor: pointer;
       box-shadow: 0 0 5px rgba(48, 134, 126, 0.658);
-      background: #80cbc381;
+      background: rgba(128, 203, 195, 0.506);
     }
-    .button:active {
+    .menu-button:active {
       top: 2px;
-       box-shadow: 0 0 0;
+      box-shadow: 0 0 0;
     }
 
 </style>
