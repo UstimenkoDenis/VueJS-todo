@@ -8,17 +8,17 @@
         <div class="tasks__header">
           Первоочередные задачи
         </div>
-        <div class="tasks__body">
-
-        </div>
+        <ul class="tasks__body">
+          
+        </ul>
       </div>
       <div class="task-list">
         <div class="task-list__header">
           Списки задач
         </div>
-        <div class="task-list__body">
+        <ul class="task-list__body">
 
-        </div>
+        </ul>
       </div>
     </article>
 		<nav id="main-nav">
@@ -116,6 +116,8 @@ export default {
   }
     .tasks {
       grid-area: tasks; 
+      display: flex;
+      flex-direction:column;
       padding: 0;
       margin: 0;
       border: 1px solid #bbdefb;
@@ -125,8 +127,13 @@ export default {
         color:#90caf9 ;
         font-size: 20px;
       }
+      .tasks__body {
+        flex-grow: 1;
+      }
     .task-list {
       grid-area: taskList;
+      display: flex;
+      flex-direction: column;
       padding: 0;
       margin: 0;
       border: 1px solid #bbdefb;
@@ -135,6 +142,9 @@ export default {
       .task-list__header {
         color:#90caf9 ;
         font-size: 20px;
+      }
+      .task-list__body {
+        flex-grow: 1;
       }
   #main-nav {
     grid-area: nav;
@@ -157,7 +167,7 @@ export default {
       }
     .button:hover {
       cursor: pointer;
-      box-shadow: 0 2px 5px rgba(48, 134, 126, 0.658);
+      box-shadow: 0 0 5px rgba(48, 134, 126, 0.658);
       background: #80cbc381;
     }
     .button:active {
