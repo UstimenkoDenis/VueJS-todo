@@ -1,12 +1,17 @@
 <template>
-  <div id="app">
-    <header id="page-header">
+  <div class="app">
+    <header class="page-header">
       Список задач
     </header>
-		<article id="main-article">
+		<article class="main-article">
       <div class="tasks">
         <div class="tasks__header">
-          Первоочередные задачи
+          <div class="tasks__header-title">
+            Первоочередные задачи
+          </div>
+          <div class="tasks__header-filter">
+            <input class = "input" type="text">
+          </div>
         </div>
         <ul class="tasks__body">
           
@@ -14,14 +19,19 @@
       </div>
       <div class="task-list">
         <div class="task-list__header">
-          Списки задач
+          <div class="task-list__header-title">
+            Списки задач
+          </div>
+          <div class="task-list__header-filter">
+            <input class = "input" type="text">
+          </div>
         </div>
         <ul class="task-list__body">
 
         </ul>
       </div>
     </article>
-		<nav id="main-nav">
+		<nav class="main-nav">
       <div class="button">
         Создать новую задачу
       </div>
@@ -29,7 +39,7 @@
         Создать новый список задач
       </div>
     </nav>
-	<footer id="page-footer">
+	<footer class="page-footer">
     ustimenkodenis@mail.ru
   </footer>
   </div>
@@ -46,7 +56,7 @@ export default {
 </script>
 
 <style>
-  #app {
+  .app {
     display: grid;
     grid-template-areas:
     "header header header"
@@ -62,7 +72,7 @@ export default {
   }
 
   @media (max-width: 575px) {
-      #app {
+      .app {
           grid-template-areas:
           "header"
           "nav"
@@ -77,12 +87,12 @@ export default {
       }
   }
   
-  header, footer, article, nav, div {
+  .page-header, .page-footer, .main-article, .main-nav {
       padding: 1.2rem;
       border-radius: 5px;
   }
  
-  #page-header {
+  .page-header {
     grid-area: header;
     background: #bbdefb; 
     color: #fff;
@@ -91,7 +101,7 @@ export default {
     justify-content: center;
     align-items: center;
   }
-  #page-footer {
+  .page-footer {
     grid-area: footer;
     background: #bbdefb;  
     display: flex;
@@ -100,7 +110,7 @@ export default {
     color: #fff;
     font-size: 25px;
   }
-  #main-article {
+  .main-article {
     grid-area: article;
     background: #fff ;
     display: grid;
@@ -126,7 +136,21 @@ export default {
       .tasks__header {
         color:#90caf9 ;
         font-size: 20px;
+        padding: 0;
       }
+        .tasks__header-title {
+          display:inline-block;
+          padding: 1.2rem 1.2rem 0 1.2rem;
+        }
+        .tasks__header-filter {
+          display: inline-flex;
+          flex-wrap: wrap;
+          padding: 1rem 1.2rem 0 1.2rem;
+        }
+        .input {
+          min-width: 25rem;
+          color: #90caf9
+        }
       .tasks__body {
         flex-grow: 1;
       }
@@ -142,11 +166,21 @@ export default {
       .task-list__header {
         color:#90caf9 ;
         font-size: 20px;
+        padding: 0;
       }
+        .task-list__header-title {
+          display:inline-block;
+          padding: 1.2rem 1.2rem 0 1.2rem;
+        }
+        .task-list__header-filter {
+          display: inline-flex;
+          flex-wrap: wrap;
+          padding: 1rem 1.2rem 0 1.2rem;
+        }
       .task-list__body {
         flex-grow: 1;
       }
-  #main-nav {
+  .main-nav {
     grid-area: nav;
     background: #b2dfdb;
   }
@@ -174,6 +208,5 @@ export default {
       top: 2px;
        box-shadow: 0 0 0;
     }
-
 
 </style>
