@@ -11,6 +11,7 @@
         </div>
         <div class="group__body">
            <ul class="group__list">
+             
                <GroupItem
                     v-for="item in items" 
                     v-bind:key="item.id"
@@ -27,7 +28,7 @@ import GroupItem from './GroupItem'
             GroupItem
         },
         props: {
-            items:{
+            items: {
                 type: Object,
                 required: true
             }

@@ -3,7 +3,7 @@
         <Group 
             v-for="(items, index) in groupData"
             v-bind:key="`${index}`"
-            v-bind:item="items"
+            v-bind:items="items"
         />
     </ul>    
 </template>
