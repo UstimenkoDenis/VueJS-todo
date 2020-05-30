@@ -71,7 +71,12 @@
             min-width: 300px;
             display: block;
             color: #90caf9;
-            flex-grow: 1;           
+            flex-grow: 1;                 
+            border: 1px solid #90caf9;
+  
         }  
+            .filter__input:active {
+                border: 1px solid #588ebb;
+            }
 
 </style>

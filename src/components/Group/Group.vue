@@ -1,34 +1,43 @@
 <template>
-    <li class="card">
-        <div class="card__header">
-            <div class="card__title">
-                {{card.title}}
+    <li class="group">
+        <div class="group__header">
+            <div class="group__title">
+                {{}}
             </div>
-            <div class="card__controls">
+            <div class="group__controls">
                 <input class="checkbox" type="checkbox">
                 <div class="delete-button"></div>  
             </div>                     
         </div>
-        <div class="card__body">
-            {{card.task}}
+        <div class="group__body">
+           <ul class="group__list">
+               <GroupItem
+                    v-for="item in items" 
+                    v-bind:key="item.id"
+                    v-bind:item="item"/>              
+           </ul>
         </div>
     </li>
 </template> 
 
 <script>
-export default {
-    props: {
-        card:{
-            type: Object,
-            required: true
+import GroupItem from './GroupItem'
+    export default {
+        components: {
+            GroupItem
+        },
+        props: {
+            items:{
+                type: Object,
+                required: true
+            }
         }
     }
-}
 </script>
 
 
 <style>
-    .card {
+    .group {
         display: flex;
         flex-direction: column;
         width: 200px;
@@ -38,10 +47,10 @@ export default {
         border: 0.1rem solid #f0f4c3;
         border-radius: 5px;
     }
-        .card:first-child {
+        .group:first-child {
             margin: 1.2rem 0.6rem 1.2rem 1.2rem;
         }
-        .card__header {
+        .group__header {
             width: 100%;
             height: 30px;
             background: #fff;
@@ -49,14 +58,14 @@ export default {
             display: flex;
             justify-content: space-between;
         }   
-            .card__title {
+            .group__title {
                 flex-grow: 1;
                 display:flex;
                 justify-content: center;
                 align-items: center;
 
             }
-            .card__controls {
+            .group__controls {
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -72,9 +81,13 @@ export default {
                 background: #ffcdd2 ; 
                 border-radius: 50%;
             }
-        .card__body {
+        .group__body {
             flex-grow: 1;
-            padding: 0.8rem;
-            color: rgba(0, 0, 0, 0.61)
+           
+            color: rgba(0, 0, 0, 0.61);
+          
         }
+            .group__list {
+                padding: 0;
+            }
 </style>

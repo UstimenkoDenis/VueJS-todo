@@ -12,19 +12,18 @@
           <ToDoFilter/>
         </div>
         <div class="tasks__body">
-          <Card/>
-           <Card/>
+          <CardList v-bind:cardsData="cardsData"/>     
         </div>         
       </div>
-      <div class="task-list">
-        <div class="task-list__header">
-          <div class="task-list__header-title">
+      <div class="group-list">
+        <div class="group-list__header">
+          <div class="group-list__header-title">
             Списки задач
           </div>
           <ToDoFilter/>
         </div>
-        <div class="task-list__body">
-          <CardList/>
+        <div class="group-list__body">
+          <GroupList v-bind:groupData="groupData"/>
         </div>
       </div>
     </article>
@@ -44,14 +43,37 @@
 
 <script>
 import ToDoFilter from './components/ToDoFilter/ToDoFilter'
-import Card from './components/Card/Card'
 import CardList from './components/CardList/CardList'
+import GroupList from './components/GroupList/GroupList'
+
 export default {
   name: 'App',
   components: {
     ToDoFilter,
-    Card,
-    CardList
+    CardList,
+    GroupList
+  },
+  data() {
+    return {
+      cardsData: [
+        {id: 1, title: "Name1", task: "Body1", completed: false},
+        {id: 2, title: "Name2", task: "Body2", completed: false},
+        {id: 3, title: "Name1", task: "Body1", completed: false},
+        {id: 4, title: "Name2", task: "Body2", completed: false}
+      ],
+      groupData: [
+                  [
+                    {id: 5, title: "Name1", task: "Body1", completed: false},
+                    {id: 6, title: "Name2", task: "Body2", completed: false},
+                    {id: 7, title: "Name1", task: "Body1", completed: false}
+                  ],
+                  [
+                    {id: 8, title: "Name1", task: "Body1", completed: false},
+                    {id: 9, title: "Name2", task: "Body2", completed: false},
+                    {id: 10, title: "Name1", task: "Body1", completed: false}
+                  ]
+      ]          
+    }
   }
 }
 </script>
@@ -122,7 +144,7 @@ export default {
     display: grid;
     grid-template-areas:
     "tasks"
-    "taskList";
+    "groupList";
     grid-template-rows: 0.5fr 0.5fr;
     grid-template-columns: 1fr;
     grid-row-gap: 10px;
@@ -151,11 +173,10 @@ export default {
         }
         
       .tasks__body {
-        flex-grow: 1;
-        display: flex;        
+        flex-grow: 1;             
       }
-    .task-list {
-      grid-area: taskList;
+    .group-list {
+      grid-area: groupList;
       display: flex;
       flex-direction: column;
       padding: 0;
@@ -163,7 +184,7 @@ export default {
       border: 1px solid #bbdefb;
       border-radius: 5px;      
     }
-      .task-list__header {
+      .group-list__header {
         color:#90caf9 ;
         font-size: 20px;
         padding: 0;
@@ -171,11 +192,11 @@ export default {
         flex-wrap: wrap;      
         padding: 1.2rem 1.2rem 0 1.2rem;
       }
-        .task-list__header-title {
+        .group-list__header-title {
           display:inline-block;   
           margin-right: 1.2rem;   
         }       
-      .task-list__body {
+      .group-list__body {
         flex-grow: 1;        
       }
   .main-nav {
