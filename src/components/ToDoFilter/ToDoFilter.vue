@@ -67,12 +67,11 @@
                 top: 2px;
                 box-shadow: 0 0 0;
             }     
-    .filter__input {
-
-        display: block;
-        color: #90caf9;
-        flex-grow: 1;
-        box-sizing: border-box;
-    }  
+        .filter__input {
+            min-width: 300px;
+            display: block;
+            color: #90caf9;
+            flex-grow: 1;           
+        }  
 
 </style>

@@ -11,9 +11,10 @@
           </div>
           <ToDoFilter/>
         </div>
-        <ul class="tasks__body">
-          
-        </ul>         
+        <div class="tasks__body">
+          <Card/>
+           <Card/>
+        </div>         
       </div>
       <div class="task-list">
         <div class="task-list__header">
@@ -22,9 +23,9 @@
           </div>
           <ToDoFilter/>
         </div>
-        <ul class="task-list__body">
-
-        </ul>
+        <div class="task-list__body">
+          <CardList/>
+        </div>
       </div>
     </article>
 		<nav class="main-nav">
@@ -42,11 +43,15 @@
 </template>
 
 <script>
-import ToDoFilter from '@/components/ToDoFilter/ToDoFilter'
+import ToDoFilter from './components/ToDoFilter/ToDoFilter'
+import Card from './components/Card/Card'
+import CardList from './components/CardList/CardList'
 export default {
   name: 'App',
   components: {
-    ToDoFilter
+    ToDoFilter,
+    Card,
+    CardList
   }
 }
 </script>
@@ -62,9 +67,9 @@ export default {
     grid-template-columns: 20% 1fr 15%;
     grid-row-gap: 10px;
     grid-column-gap: 10px;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
-    padding: 0;
+    padding: 0;    
   }
 
   @media (max-width: 575px) {
@@ -121,7 +126,6 @@ export default {
     grid-template-rows: 0.5fr 0.5fr;
     grid-template-columns: 1fr;
     grid-row-gap: 10px;
-    height: 100vh;
     margin: 0;
     padding: 0;
   }
@@ -148,6 +152,7 @@ export default {
         
       .tasks__body {
         flex-grow: 1;
+        display: flex;        
       }
     .task-list {
       grid-area: taskList;
@@ -171,7 +176,7 @@ export default {
           margin-right: 1.2rem;   
         }       
       .task-list__body {
-        flex-grow: 1;
+        flex-grow: 1;        
       }
   .main-nav {
     grid-area: nav;
