@@ -1,7 +1,7 @@
 <template>
     <li class="card">
-        <div class="card__header">
-            <div class="card__title">
+        <div class="card__header flex-between">
+            <div class="card__title flex-center">
                 {{card.title}}
             </div>
             <div class="card__controls">
@@ -45,16 +45,10 @@ export default {
             width: 100%;
             height: 30px;
             background: #fff;
-            color: #90caf9;
-            display: flex;
-            justify-content: space-between;
+            color: #90caf9;           
         }   
             .card__title {
                 flex-grow: 1;
-                display:flex;
-                justify-content: center;
-                align-items: center;
-
             }
             .card__controls {
                 display: flex;

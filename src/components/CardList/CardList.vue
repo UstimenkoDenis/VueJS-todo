@@ -28,5 +28,8 @@ export default {
         display:flex;
         padding: 0;
         margin: 0;
+        width: 100%;
+        overflow-x: scroll;  
     }
+    .cardlist::-webkit-scrollbar {height:0px;}
 </style>

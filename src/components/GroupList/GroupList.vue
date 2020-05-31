@@ -26,8 +26,10 @@ export default {
 
 <style>
     .grouplist {
-        display:flex;
+        display: flex;
         padding: 0;
         margin: 0;
+        overflow-x: scroll; 
     }
+    .grouplist::-webkit-scrollbar {height:0px;}
 </style>

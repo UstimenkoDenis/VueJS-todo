@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <header class="page-header">
+    <header class="page-header flex-center">
       Список задач
     </header>
 		<article class="main-article">
@@ -35,7 +35,7 @@
         Создать новый список задач
       </div>
     </nav>
-	<footer class="page-footer">
+	<footer class="page-footer flex-center">
     ustimenkodenis@mail.ru
   </footer>
   </div>
@@ -59,7 +59,7 @@ export default {
         {id: 1, title: "Купить", task: "Хлеб, молоко", completed: false},
         {id: 2, title: "Заплатить", task: "Кредит", completed: false},
         {id: 3, title: "Прочитать", task: "JS Николас Закас", completed: false},
-        {id: 4, title: "Посмотреть", task: "Netflix", completed: false}
+        {id: 4, title: "Посмотреть", task: "Netflix", completed: false}        
       ],
       groupData: [
                   { title: "Купить",
@@ -76,7 +76,7 @@ export default {
                             {id: 9, title: "Name2", task: "Body2", completed: false},
                             {id: 10, title: "Name1", task: "Body1", completed: false}
                     ]
-                  }
+                  }                             
       ]          
     }
   }
@@ -129,17 +129,11 @@ export default {
     grid-area: header;
     background: #bbdefb; 
     color: #fff;
-    font-size: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-size: 35px;  
   }
   .page-footer {
     grid-area: footer;
     background: #bbdefb;  
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: #fff;
     font-size: 25px;
   }
@@ -163,7 +157,8 @@ export default {
       padding: 0;
       margin: 0;
       border: 1px solid #bbdefb;
-      border-radius: 5px;       
+      border-radius: 5px;   
+      min-width: 500px;    
     }
       .tasks__header {
         color:#90caf9 ;
@@ -178,7 +173,8 @@ export default {
         }
         
       .tasks__body {
-        flex-grow: 1;             
+        flex-grow: 1;   
+           width: 100%;            
       }
     .group-list {
       grid-area: groupList;
@@ -187,7 +183,8 @@ export default {
       padding: 0;
       margin: 0;
       border: 1px solid #bbdefb;
-      border-radius: 5px;      
+      border-radius: 5px;   
+      min-width: 500px;    
     }
       .group-list__header {
         color:#90caf9 ;

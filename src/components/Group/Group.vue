@@ -1,11 +1,10 @@
 <template>
     <li class="group">
         <div class="group__header">
-            <div class="group__title">
+            <div class="group__title flex-center">
                 {{items.title}}
             </div>
-            <div class="group__controls">
-                <input class="checkbox" type="checkbox">
+            <div class="group__controls flex-center">               
                 <div class="delete-button"></div>  
             </div>                     
         </div>
@@ -51,30 +50,24 @@ import GroupItem from './GroupItem'
         .group:first-child {
             margin: 1.2rem 0.6rem 1.2rem 1.2rem;
         }
-        .group__header {
+        .group__header {           
             width: 100%;
-            height: 30px;
+            height: 60px;
             background: #fff;
             color: #90caf9;
             display: flex;
             justify-content: space-between;
         }   
-            .group__title {
-                flex-grow: 1;
+            .flex-center {
                 display:flex;
                 justify-content: center;
                 align-items: center;
-
+            }
+            .group__title {
+                flex-grow: 1;
             }
             .group__controls {
-                display: flex;
-                justify-content: center;
-                align-items: center;
                 padding: 0 0.2rem;
-            }
-            .checkbox {
-                width: 20px;
-                height: 20px;
             }
             .delete-button {
                 position: relative;

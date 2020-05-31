@@ -1,13 +1,13 @@
 <template>
     <li class="group-item">
-        <div class="group-item__header">
+        <div class="group-item__header flex-between">
             <div 
-                class="group-item__title"
+                class="group-item__title flex-center"
                 v-bind:class="{done: item.completed}"
             >
                 {{item.title}}
             </div>
-            <div class="group-item__controls">
+            <div class="group-item__controls flex-center">
                 <input 
                     class="item-checkbox" 
                     v-on:change="item.completed = !item.completed" 
@@ -51,34 +51,31 @@ export default {
         list-style: none;
         margin: 0.1rem 0;        
     }
-        .group-item__header {
-            padding: 0.2rem 0.2rem 0 0.3rem;
+        .flex-between {
             display: flex;
-            height: 30px;
             align-items: center;
             justify-content:space-between;
         }
-            .group-item__title {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+        .group-item__header {
+            padding: 0.2rem 0.2rem 0 0.3rem;           
+            height: 30px;           
+        }
             .group-item__controls {
-                display: flex;
-                justify-content: center;
-                align-items: center;
                 padding: 0 0.2rem;
             }
-            .item-open-button {
-                position: relative;
-                left: 0;
-                top: 0;
-                width: 14px;
-                height:14px;
-                margin-right: 0.2rem;
-                background: #c8e6c9; 
-                border-radius: 50%;
-            }
+                .item-checkbox {
+                    
+                }
+                .item-open-button {
+                    position: relative;
+                    left: 0;
+                    top: 0;
+                    width: 14px;
+                    height:14px;
+                    margin-right: 0.2rem;
+                    background: #c8e6c9; 
+                    border-radius: 50%;
+                }
                 .item-open-button:hover {
                     cursor: pointer;
                     box-shadow: 0 0 5px rgba(200, 230, 201, 0.568);
