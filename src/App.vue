@@ -56,22 +56,27 @@ export default {
   data() {
     return {
       cardsData: [
-        {id: 1, title: "Name1", task: "Body1", completed: false},
-        {id: 2, title: "Name2", task: "Body2", completed: false},
-        {id: 3, title: "Name1", task: "Body1", completed: false},
-        {id: 4, title: "Name2", task: "Body2", completed: false}
+        {id: 1, title: "Купить", task: "Хлеб, молоко", completed: false},
+        {id: 2, title: "Заплатить", task: "Кредит", completed: false},
+        {id: 3, title: "Прочитать", task: "JS Николас Закас", completed: false},
+        {id: 4, title: "Посмотреть", task: "Netflix", completed: false}
       ],
       groupData: [
-                  [
-                    {id: 5, title: "Name1", task: "Body1", completed: false},
-                    {id: 6, title: "Name2", task: "Body2", completed: false},
-                    {id: 7, title: "Name1", task: "Body1", completed: false}
-                  ],
-                  [
-                    {id: 8, title: "Name1", task: "Body1", completed: false},
-                    {id: 9, title: "Name2", task: "Body2", completed: false},
-                    {id: 10, title: "Name1", task: "Body1", completed: false}
-                  ]
+                  { title: "Купить",
+                    group: [
+                        {id: 5, title: "Name1", task: "Body1", completed: false},
+                        {id: 6, title: "Name2", task: "Body2", completed: false},
+                        {id: 7, title: "Name1", task: "Body1", completed: false},
+                        {id: 7, title: "Name1", task: "Body1", completed: false}
+                    ]
+                  },
+                  { title: "Прочитать",
+                    group: [
+                            {id: 8, title: "Name1", task: "Body1", completed: false},
+                            {id: 9, title: "Name2", task: "Body2", completed: false},
+                            {id: 10, title: "Name1", task: "Body1", completed: false}
+                    ]
+                  }
       ]          
     }
   }

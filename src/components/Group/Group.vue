@@ -2,7 +2,7 @@
     <li class="group">
         <div class="group__header">
             <div class="group__title">
-                {{}}
+                {{items.title}}
             </div>
             <div class="group__controls">
                 <input class="checkbox" type="checkbox">
@@ -13,7 +13,7 @@
            <ul class="group__list">
              
                <GroupItem
-                    v-for="item in items" 
+                    v-for="item in items.group" 
                     v-bind:key="item.id"
                     v-bind:item="item"/>              
            </ul>
@@ -83,12 +83,14 @@ import GroupItem from './GroupItem'
                 border-radius: 50%;
             }
         .group__body {
-            flex-grow: 1;
-           
+            flex-grow: 1;           
             color: rgba(0, 0, 0, 0.61);
-          
+            overflow-y: scroll;                     
         }
+        .group__body::-webkit-scrollbar {width:0px;}
+
             .group__list {
                 padding: 0;
+
             }
 </style>
