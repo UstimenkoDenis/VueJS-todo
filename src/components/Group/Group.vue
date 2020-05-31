@@ -77,11 +77,23 @@ import GroupItem from './GroupItem'
                 height: 20px;
             }
             .delete-button {
+                position: relative;
+                top: 0;
+                left: 0;
                 width: 20px;
                 height:20px;
                 background: #ffcdd2 ; 
                 border-radius: 50%;
             }
+                .delete-button:hover {
+                    cursor: pointer;
+                    box-shadow: 0 0 5px rgba(255, 205, 210, 0.651);
+                    background: rgba(255, 205, 210, 0.616);
+                }
+                .delete-button:active {
+                    top: 2px;
+                    box-shadow: 0 0 0;
+                }
         .group__body {
             flex-grow: 1;           
             color: rgba(0, 0, 0, 0.61);

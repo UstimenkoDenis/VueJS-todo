@@ -64,7 +64,7 @@ export default {
       groupData: [
                   { title: "Купить",
                     group: [
-                        {id: 5, title: "Name1", task: "Body1", completed: false},
+                        {id: 5, title: "Купить", task: "Книги", completed: false},
                         {id: 6, title: "Name2", task: "Body2", completed: false},
                         {id: 7, title: "Name1", task: "Body1", completed: false},
                         {id: 7, title: "Name1", task: "Body1", completed: false}
