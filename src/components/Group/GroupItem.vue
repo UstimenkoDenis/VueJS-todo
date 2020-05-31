@@ -1,16 +1,31 @@
 <template>
     <li class="group-item">
         <div class="group-item__header">
-            <div class="group-item__title">
+            <div 
+                class="group-item__title"
+                v-bind:class="{done: item.completed}"
+            >
                 {{item.title}}
             </div>
             <div class="group-item__controls">
-                <input class="item-checkbox" type="checkbox">
-                <div  v-on:click="toggle=!toggle" class="item-open-button"></div>  
-                <div class="item-delete-button"></div>  
+                <input 
+                    class="item-checkbox" 
+                    v-on:change="item.completed = !item.completed" 
+                    type="checkbox"
+                >
+                <div   
+                    class="item-open-button" 
+                    v-on:click="toggle=!toggle"
+                ></div>  
+                <div 
+                    class="item-delete-button"
+                ></div>  
             </div>    
         </div>
-        <div v-bind:class="{opened: toggle}" class="group-item__body toggle">
+        <div
+            class="group-item__body" 
+            v-bind:class="{opened: toggle}"
+        >
            {{item.task}}
         </div>
     </li>
@@ -93,9 +108,12 @@ export default {
                 }
         .group-item__body {
             padding: 0.4rem 0.2rem 0 0.3rem;
-             background: #fff; 
+            background: #fff; 
         }
             .opened {
                 height: 100px;
+            }
+            .done {
+                text-decoration: line-through
             }
 </style>
