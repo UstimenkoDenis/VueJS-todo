@@ -1,10 +1,10 @@
 <template>
     <div class="filter">
         <div class="filter__buttons">
-            <div class="filter__button-title button-filter">
+            <div class="filter__button-title button-filter flex-center">
                 Название
             </div>
-            <div class="filter__button-done button-filter">
+            <div class="filter__button-done button-filter flex-center">
                 Выполнены 
             </div>
         </div>        
@@ -37,9 +37,6 @@
             border-radius: 3px;
             color: #fff;
             padding: 3px 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             margin: 0 1.2rem 0 0px;           
         }
             

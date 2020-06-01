@@ -4,6 +4,8 @@
             v-for="(items, index) in groupData"
             v-bind:key="`${index}`"
             v-bind:items="items"
+            @onDelGroup="deleteGroup"
+            @onDelItem="deleteItem"
         />
     </ul>    
 </template>
@@ -20,7 +22,15 @@ export default {
         return { 
             
         }
-    }
+    },
+    methods: {
+        deleteGroup(id) {
+            this.$emit('onDelGroup', id)           
+        },
+        deleteItem(id, idGroup) {
+            this.$emit('onDelItem', id, idGroup)
+        }
+    }   
 }
 </script>
 

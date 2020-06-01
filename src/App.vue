@@ -12,7 +12,10 @@
           <ToDoFilter/>
         </div>
         <div class="tasks__body">
-          <CardList v-bind:cardsData="cardsData"/>     
+          <CardList 
+              v-bind:cardsData = "cardsData"
+              @onDelete = "deleteCard"
+          />     
         </div>         
       </div>
       <div class="group-list">
@@ -23,19 +26,34 @@
           <ToDoFilter/>
         </div>
         <div class="group-list__body">
-          <GroupList v-bind:groupData="groupData"/>
+          <GroupList 
+              v-bind:groupData="groupData"
+              @onDelGroup="deleteGroup"
+              @onDelItem="deleteItem"
+          />
         </div>
       </div>
     </article>
 		<nav class="main-nav">
-      <div class="menu-button">
+      <div 
+        class="menu-button"
+        v-on:click="addCard('tit','description')"
+      >
         Создать новую задачу
       </div>
-      <div class="menu-button">
+      <div 
+        class="menu-button"
+        v-on:click="addGroup('Group')"
+      >
         Создать новый список задач
       </div>
+      <div class="main-nav__inputs">
+        <label for=""></label>
+          <input class="main-nav__input" type="text">
+          <input class="main-nav__input" type="text">
+      </div>
     </nav>
-	<footer class="page-footer flex-center">
+	<footer class="page-footer">
     ustimenkodenis@mail.ru
   </footer>
   </div>
@@ -53,30 +71,117 @@ export default {
     CardList,
     GroupList
   },
+  methods: {
+    addCard(title, description) {
+      const id = this.cardsData.length + 1
+      const newCard = {
+        id,
+        title,
+        description,
+        completed: false
+      }
+      const newCardsData = [...this.cardsData]
+      newCardsData.push(newCard)
+      console.log(newCardsData)
+      return (
+        this.cardsData = newCardsData
+      )
+      
+    },
+    deleteCard(id) {
+            const index = this.cardsData.findIndex((elem)=>elem.id === id)
+            const before = this.cardsData.slice(0,index)
+            const after = this.cardsData.slice(index+1)
+            const newCardsData = [...before,...after]
+            console.log(newCardsData)
+            this.cardsData = newCardsData
+            console.log(id)
+    },
+    addGroup(title) {
+      const id = this.groupData.length + 1
+      const newGroup = {
+        id,
+        title  
+      }
+      const newGroupData = [...this.groupData]
+      newGroupData.push(newGroup)
+      console.log(newGroupData)
+      return (
+        this.groupData = newGroupData
+      )
+      
+    },
+    deleteGroup(id) {
+      const index = this.groupData.findIndex((elem)=>elem.id === id)
+      const before = this.groupData.slice(0,index)
+      const after = this.groupData.slice(index+1)
+      const newGroupData = [...before,...after]
+     this.groupData = newGroupData
+      console.log(id)
+            
+    },
+    deleteItem(id, idGroup) {
+        
+        const indexGroup = this.groupData.findIndex((elem)=>elem.id === idGroup)
+        const index = this.groupData[indexGroup].group.findIndex((elem)=>elem.id === id)
+         
+            const before = this.groupData[indexGroup].group.slice(0,index)
+            const after = this.groupData[indexGroup].group.slice(index+1)
+            const newGroupList = [...before,...after]           
+          
+         this.groupData[indexGroup].group = newGroupList
+      
+        
+           
+    }    
+  },    
+
+   
   data() {
     return {
       cardsData: [
-        {id: 1, title: "Купить", task: "Хлеб, молоко", completed: false},
-        {id: 2, title: "Заплатить", task: "Кредит", completed: false},
-        {id: 3, title: "Прочитать", task: "JS Николас Закас", completed: false},
-        {id: 4, title: "Посмотреть", task: "Netflix", completed: false}        
+        {id: 1, title: "Купить",description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est fugiat nihil eos vel, ipsam doloremque perferendis architecto possimus saepe obcaecati laborum molestias neque eligendi cum dolore ipsa quod iure. Consectetur.", completed: false},
+        {id: 2, title: "Заплатить",description: "Кредит", completed: false},
+        {id: 3, title: "Прочитать",description: "JS Николас Закас", completed: false},
+        {id: 4, title: "Посмотреть",description: "Netflix", completed: false}        
       ],
       groupData: [
-                  { title: "Купить",
+                  { id: 1,
+                    title: "Купить",
                     group: [
-                        {id: 5, title: "Купить", task: "Книги", completed: false},
-                        {id: 6, title: "Name2", task: "Body2", completed: false},
-                        {id: 7, title: "Name1", task: "Body1", completed: false},
-                        {id: 7, title: "Name1", task: "Body1", completed: false}
+                        {id: 5, title: "Купить",description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est fugiat nihil eos vel, ipsam doloremque perferendis architecto possimus saepe obcaecati laborum molestias neque eligendi cum dolore ipsa quod iure. Consectetur.", completed: false},
+                        {id: 6, title: "Name2",description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est fugiat nihil eos vel, ipsam doloremque perferendis architecto possimus saepe obcaecati laborum molestias neque eligendi cum dolore ipsa quod iure. Consectetur.", completed: false},
+                        {id: 7, title: "Name1",description: "Body1", completed: false},
+                        {id: 8, title: "Name1",description: "Body1", completed: false}
                     ]
                   },
-                  { title: "Прочитать",
+                  { id: 2,
+                    title: "Прочитать",
                     group: [
-                            {id: 8, title: "Name1", task: "Body1", completed: false},
-                            {id: 9, title: "Name2", task: "Body2", completed: false},
-                            {id: 10, title: "Name1", task: "Body1", completed: false}
+                            {id: 9, title: "Name1",description: "Body1", completed: false},
+                            {id: 10, title: "Name2",description: "Body2", completed: false},
+                            {id: 11, title: "Name1",description: "Body1", completed: false}
+                           
                     ]
-                  }                             
+                  },
+                  { id: 3,
+                    title: "Купить",
+                    group: [
+                        {id: 5, title: "Купить",description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est fugiat nihil eos vel, ipsam doloremque perferendis architecto possimus saepe obcaecati laborum molestias neque eligendi cum dolore ipsa quod iure. Consectetur.", completed: false},
+                        {id: 6, title: "Name2",description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est fugiat nihil eos vel, ipsam doloremque perferendis architecto possimus saepe obcaecati laborum molestias neque eligendi cum dolore ipsa quod iure. Consectetur.", completed: false},
+                        {id: 7, title: "Name1",description: "Body1", completed: false},
+                        {id: 8, title: "Name1",description: "Body1", completed: false}
+                    ]
+                  },
+                  { id: 4,
+                    title: "Прочитать",
+                    group: [
+                            {id: 9, title: "Name1",description: "Body1", completed: false},
+                            {id: 10, title: "Name2",description: "Body2", completed: false},
+                            {id: 11, title: "Name1",description: "Body1", completed: false}
+                           
+                    ]
+                  }                                   
       ]          
     }
   }
@@ -214,12 +319,11 @@ export default {
       text-align: center;
       color:#fff;
       padding: 7px;
+      margin-top: 1rem;
       font-size: 20px;
       transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     }
-      .menu-button:last-child {
-        margin-top: 7px;
-      }
+      
     .menu-button:hover {
       cursor: pointer;
       box-shadow: 0 0 5px rgba(48, 134, 126, 0.658);
@@ -229,5 +333,12 @@ export default {
       top: 2px;
       box-shadow: 0 0 0;
     }
+    .main-nav__inputs {
+      margin-top: 1.2rem;
+    }
+      .main-nav__input {
+        margin-top: 1.2rem;
+        
+      }
 
 </style>

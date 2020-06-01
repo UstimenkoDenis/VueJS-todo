@@ -19,6 +19,7 @@
                 ></div>  
                 <div 
                     class="item-delete-button"
+                    v-on:click="$emit('onDelItem', item.id)"
                 ></div>  
             </div>    
         </div>
@@ -26,7 +27,7 @@
             class="group-item__body" 
             v-bind:class="{opened: toggle}"
         >
-           {{item.task}}
+           {{item.description}}
         </div>
     </li>
 </template>
@@ -104,11 +105,15 @@ export default {
                     box-shadow: 0 0 0;
                 }
         .group-item__body {
+            display: none;
             padding: 0.4rem 0.2rem 0 0.3rem;
             background: #fff; 
+            color: rgba(0, 0, 0, 0.61)
+
         }
             .opened {
-                height: 100px;
+                display: block;
+                height: 100%;
             }
             .done {
                 text-decoration: line-through

@@ -5,7 +5,10 @@
                 {{items.title}}
             </div>
             <div class="group__controls flex-center">               
-                <div class="delete-button"></div>  
+                <div 
+                    class="delete-button"
+                    v-on:click="$emit('onDelGroup', items.id)"
+                ></div>  
             </div>                     
         </div>
         <div class="group__body">
@@ -14,7 +17,10 @@
                <GroupItem
                     v-for="item in items.group" 
                     v-bind:key="item.id"
-                    v-bind:item="item"/>              
+                    v-bind:item="item"
+                    v-on:onDelItem="deleteItem"
+                    
+                />              
            </ul>
         </div>
     </li>
@@ -30,6 +36,12 @@ import GroupItem from './GroupItem'
             items: {
                 type: Object,
                 required: true
+            }
+        },
+        methods: {
+           
+            deleteItem(id){
+                this.$emit('onDelItem', id, this.items.id)               
             }
         }
     }
@@ -52,8 +64,7 @@ import GroupItem from './GroupItem'
         }
         .group__header {           
             width: 100%;
-            height: 60px;
-            background: #fff;
+            background: #fff;            
             color: #90caf9;
             display: flex;
             justify-content: space-between;
@@ -77,6 +88,7 @@ import GroupItem from './GroupItem'
                 height:20px;
                 background: #ffcdd2 ; 
                 border-radius: 50%;
+                margin: 0.4rem 0;
             }
                 .delete-button:hover {
                     cursor: pointer;

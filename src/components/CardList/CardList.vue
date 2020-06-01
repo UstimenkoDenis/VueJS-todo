@@ -4,6 +4,7 @@
             v-for="card in cardsData"
             v-bind:key="card.id"
             v-bind:card="card"
+            v-on:onDelete="deleteCard"
         />
     </ul>    
 </template>
@@ -18,6 +19,12 @@ export default {
     data() {
         return {
                       
+        }
+    },
+    methods: {
+        deleteCard(id) {
+           this.$emit('onDelete', id)
+            
         }
     }
 }
