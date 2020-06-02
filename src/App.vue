@@ -3,7 +3,7 @@
     <header class="page-header flex-center">
       Список задач
     </header>
-		<article class="main-article">
+		<article class="main-article">      
       <div class="tasks">
         <div class="tasks__header">
           <div class="tasks__header-title">
@@ -14,7 +14,7 @@
         <div class="tasks__body">
           <CardList 
               v-bind:cardsData = "cardsData"
-              @onDelete = "deleteCard"
+              @onDelete="deleteCard"
           />     
         </div>         
       </div>
@@ -80,7 +80,11 @@
     </nav>
 	<footer class="page-footer flex-center">
     ustimenkodenis@mail.ru
-  </footer>
+  </footer> 
+   <Modal 
+      v-show="modalVisible"
+      @close="closeModal"
+      @apply="modalApply=true, closeModal()" />
   </div>
 </template>
 
@@ -88,13 +92,15 @@
 import ToDoFilter from './components/ToDoFilter/ToDoFilter'
 import CardList from './components/CardList/CardList'
 import GroupList from './components/GroupList/GroupList'
+import Modal from './components/Modal/Modal'
 
 export default {
   name: 'App',
   components: {
     ToDoFilter,
     CardList,
-    GroupList
+    GroupList,
+    Modal
   },
   methods: {
     createElement(choise){
@@ -122,14 +128,26 @@ export default {
       )
       
     },
+    showModal() {
+      this.modalVisible=true
+    },
+    closeModal() {
+      this.modalVisible=false
+    },
     deleteCard(id) {
-            const index = this.cardsData.findIndex((elem)=>elem.id === id)
-            const before = this.cardsData.slice(0,index)
-            const after = this.cardsData.slice(index+1)
-            const newCardsData = [...before,...after]
-            console.log(newCardsData)
-            this.cardsData = newCardsData
-            console.log(id)
+       this.showModal()
+        if(this.modalApply) {
+          console.log(id, this.modalApply)
+        //     const index = this.cardsData.findIndex((elem)=>elem.id === id)
+        //     const before = this.cardsData.slice(0,index)
+        //     const after = this.cardsData.slice(index+1)
+        //     const newCardsData = [...before,...after]
+        //     console.log(newCardsData)
+        //     this.cardsData = newCardsData
+        //     console.log(id)
+        // this.modalApply=false    
+        }
+
     },
     addGroup(title) {
       const id = this.groupData.length + 1
@@ -164,12 +182,14 @@ export default {
             const newGroupList = [...before,...after]           
           
          this.groupData[indexGroup].group = newGroupList          
-    }    
+    }       
   },    
 
    
   data() {
     return {
+      modalVisible: false,
+      modalApply: false,
       input: null,
       textArea: null,
       textAreaVisible: false,
@@ -407,7 +427,7 @@ export default {
         border-radius: 5px;
         color: #fff;
         font-size: 20px;
-        margin: 0 auto;
+        margin: 0.7rem auto;
         position: relative;
         top: 0;
         left: 0;
