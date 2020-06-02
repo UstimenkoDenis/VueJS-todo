@@ -37,23 +37,48 @@
 		<nav class="main-nav">
       <div 
         class="menu-button"
-        v-on:click="addCard('tit','description')"
+        v-on:click="choise=true, inputsBlockVisible=true, textAreaVisible=true, labelTextAreaVisible=true"
       >
         Создать новую задачу
       </div>
       <div 
         class="menu-button"
-        v-on:click="addGroup('Group')"
+        v-on:click="choise=false, inputsBlockVisible=true, textAreaVisible=false, labelTextAreaVisible=false"
       >
         Создать новый список задач
       </div>
-      <div class="main-nav__inputs">
-        <label for=""></label>
-          <input class="main-nav__input" type="text">
-          <input class="main-nav__input" type="text">
+      <div class="main-nav__inputs" v-show="inputsBlockVisible">
+        <label 
+            class="main-nav__label" 
+            for="title"            
+        >Что нужно сделать?
+        </label>
+          <input 
+              id="title" 
+              class="main-nav__input" 
+              type="text"               
+              v-model="input"              
+          >
+        <label 
+            class="main-nav__label" 
+            for="description"
+            v-show="labelTextAreaVisible"
+        >Описание
+        </label>  
+          <textarea 
+                id="description" 
+                class="main-nav__text-area" 
+                v-model="textArea"
+                v-show="textAreaVisible"
+          ></textarea>
+          <div 
+            class="main-nav__button"
+            v-on:click="createElement(choise)"
+          >Создать
+          </div>
       </div>
     </nav>
-	<footer class="page-footer">
+	<footer class="page-footer flex-center">
     ustimenkodenis@mail.ru
   </footer>
   </div>
@@ -72,6 +97,15 @@ export default {
     GroupList
   },
   methods: {
+    createElement(choise){
+      if(choise) {       
+        this.addCard(this.input, this.textArea)
+        this.inputsBlockVisible=false
+      } else {
+        this.inputsBlockVisible=false
+        this.addGroup(this.input)
+      } 
+    },
     addCard(title, description) {
       const id = this.cardsData.length + 1
       const newCard = {
@@ -81,7 +115,7 @@ export default {
         completed: false
       }
       const newCardsData = [...this.cardsData]
-      newCardsData.push(newCard)
+      newCardsData.unshift(newCard)
       console.log(newCardsData)
       return (
         this.cardsData = newCardsData
@@ -104,7 +138,7 @@ export default {
         title  
       }
       const newGroupData = [...this.groupData]
-      newGroupData.push(newGroup)
+      newGroupData.unshift(newGroup)
       console.log(newGroupData)
       return (
         this.groupData = newGroupData
@@ -129,16 +163,19 @@ export default {
             const after = this.groupData[indexGroup].group.slice(index+1)
             const newGroupList = [...before,...after]           
           
-         this.groupData[indexGroup].group = newGroupList
-      
-        
-           
+         this.groupData[indexGroup].group = newGroupList          
     }    
   },    
 
    
   data() {
     return {
+      input: null,
+      textArea: null,
+      textAreaVisible: false,
+      labelTextAreaVisible: false,
+      inputsBlockVisible: false,
+      choise: true,
       cardsData: [
         {id: 1, title: "Купить",description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est fugiat nihil eos vel, ipsam doloremque perferendis architecto possimus saepe obcaecati laborum molestias neque eligendi cum dolore ipsa quod iure. Consectetur.", completed: false},
         {id: 2, title: "Заплатить",description: "Кредит", completed: false},
@@ -190,6 +227,7 @@ export default {
 
 <style>
   .app {
+    font-family: 'Roboto', sans-serif;
     display: grid;
     grid-template-areas:
     "header header header"
@@ -334,11 +372,54 @@ export default {
       box-shadow: 0 0 0;
     }
     .main-nav__inputs {
-      margin-top: 1.2rem;
+      margin-top: 2.2rem;
+      text-align: center;
     }
+      .main-nav__label {
+        color: #fff;
+      }
       .main-nav__input {
         margin-top: 1.2rem;
-        
+        margin: 10px auto;
+        min-width: 100px;
+        min-height: 30px;
+        font-size: 20px;
+        display: block;
+        color: #90caf9;                           
+        border: 1px solid #90caf9;
       }
+      .main-nav__text-area {
+          margin-top: 1.2rem;
+          margin: 10px auto;
+          min-width: 100px;
+          min-height: 130px;
+          font-size: 20px;
+          display: block;
+          color: #90caf9;                           
+          border: 1px solid #90caf9;
+      }
+      .main-nav__text-area::-webkit-scrollbar {width:0px;}
+      .main-nav__button {
+        display: inline-block;
+        padding: 0.3rem 0.5rem;
+        background: #80cbc4;
+        border-color: #90caf9;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 20px;
+        margin: 0 auto;
+        position: relative;
+        top: 0;
+        left: 0;
+      }
+        .main-nav__button:hover {
+          cursor: pointer;
+          box-shadow: 0 0 5px rgba(48, 134, 126, 0.658);
+          background: rgba(128, 203, 195, 0.506);
+        }
+        .main-nav__button:active {
+          top: 2px;
+          box-shadow: 0 0 0;
+        }
 
 </style>
