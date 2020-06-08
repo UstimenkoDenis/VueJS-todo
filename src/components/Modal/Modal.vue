@@ -29,13 +29,17 @@
 <script>
 
 export default {
-    name: 'modal',
+    
+    name: 'Modal',
     methods: {
+        data() {
+        
+        },
         close() {
             this.$emit('close')
         },
-        apply() {
-            this.$emit('apply')
+        apply() {        
+            return this.$emit('apply')                                 
         }
     }
 }

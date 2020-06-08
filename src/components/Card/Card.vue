@@ -1,12 +1,12 @@
 <template>
     <li class="card"
-    v-bind:class="{cardopened: cardtoggle}">
+        v-bind:class="{cardopened: cardtoggle}">
         <div class="card__header flex-between">
             <div 
                 class="card__title flex-center"
                 v-bind:class="{done: card.completed}"
             >
-                {{card.title}}
+                {{card.title | uppercase}}
             </div>
             <div class="card__controls">
                 <input 
@@ -44,6 +44,12 @@ export default {
     data() {
         return {
             cardtoggle: false
+        }
+    },
+    filters: {
+        uppercase(value) {
+           
+            return value.toUpperCase()
         }
     }
 }

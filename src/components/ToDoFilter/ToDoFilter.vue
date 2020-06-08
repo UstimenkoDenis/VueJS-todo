@@ -1,17 +1,51 @@
 <template>
     <div class="filter">
         <div class="filter__buttons">
-            <div class="filter__button-title button-filter flex-center">
+            <div 
+                class="filter__button-title button-filter flex-center"
+                v-on:click = "filterByName"
+            >
                 Название
             </div>
-            <div class="filter__button-done button-filter flex-center">
+            <div 
+                class="filter__button-done button-filter flex-center"
+                v-on:click = "filterByDone"
+            >
                 Выполнены 
             </div>
         </div>        
-        <input class = "filter__input" type="text">        
+        <input 
+            class = "filter__input"
+            type="text"  
+            v-model ="text"
+           
+        >
+
     </div>        
 </template>   
-
+<script>
+export default {
+    data() {
+        return {
+            text: null
+        }
+    },
+    methods:{
+      filterByName() {
+          return this.$emit('filterByName')
+      },
+      filterByDone() {
+          return this.$emit('filterByDone')
+      },
+    },
+    watch: {
+        text(value) {
+            //  console.log(value)
+           return  this.$emit('term', value)
+        }
+    }
+}
+</script>
 <style>
     .filter {
         flex-grow: 1;

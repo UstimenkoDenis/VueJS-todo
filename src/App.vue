@@ -9,11 +9,17 @@
           <div class="tasks__header-title">
             Первоочередные задачи
           </div>
-          <ToDoFilter/>
+          <ToDoFilter
+                @term = "setTerm"
+                @filterByName = "filterByName"
+                @filterByDone = "filterByDone"
+          />
         </div>
         <div class="tasks__body">
           <CardList 
               v-bind:cardsData = "cardsData"
+              v-bind:term = "term"
+              v-bind:filter = "filter"
               @onDelete="deleteCard"
           />     
         </div>         
@@ -78,13 +84,14 @@
           </div>
       </div>
     </nav>
-	<footer class="page-footer flex-center">
-    ustimenkodenis@mail.ru
-  </footer> 
+    <footer class="page-footer flex-center">
+      ustimenkodenis@mail.ru
+    </footer> 
    <Modal 
-      v-show="modalVisible"
+      v-if="modalVisible"
       @close="closeModal"
-      @apply="modalApply=true, closeModal()" />
+      @apply="closeModal"
+    />
   </div>
 </template>
 
@@ -103,6 +110,19 @@ export default {
     Modal
   },
   methods: {
+    setTerm(term) {
+      this.term = term
+    },
+    filterByName() {
+      this.filter = 'name'
+      console.log(this.filter)
+     
+    },
+    filterByDone() {
+      this.filter = 'done'
+            console.log(this.filter)
+
+    },
     createElement(choise){
       if(choise) {       
         this.addCard(this.input, this.textArea)
@@ -127,27 +147,16 @@ export default {
         this.cardsData = newCardsData
       )
       
-    },
-    showModal() {
-      this.modalVisible=true
-    },
-    closeModal() {
-      this.modalVisible=false
-    },
-    deleteCard(id) {
-       this.showModal()
-        if(this.modalApply) {
-          console.log(id, this.modalApply)
-        //     const index = this.cardsData.findIndex((elem)=>elem.id === id)
-        //     const before = this.cardsData.slice(0,index)
-        //     const after = this.cardsData.slice(index+1)
-        //     const newCardsData = [...before,...after]
-        //     console.log(newCardsData)
-        //     this.cardsData = newCardsData
-        //     console.log(id)
-        // this.modalApply=false    
-        }
-
+    },   
+    deleteCard(id) {  
+      if(confirm('Вы действительно хотите удалить?')){
+        const index = this.cardsData.findIndex((elem)=>elem.id === id)
+        const before = this.cardsData.slice(0,index)
+        const after = this.cardsData.slice(index+1)
+        const newCardsData = [...before,...after]
+        this.cardsData = newCardsData   
+        this.modalApply = false  
+      }              
     },
     addGroup(title) {
       const id = this.groupData.length + 1
@@ -164,16 +173,17 @@ export default {
       
     },
     deleteGroup(id) {
-      const index = this.groupData.findIndex((elem)=>elem.id === id)
-      const before = this.groupData.slice(0,index)
-      const after = this.groupData.slice(index+1)
-      const newGroupData = [...before,...after]
-     this.groupData = newGroupData
-      console.log(id)
-            
+      if(confirm('Вы действительно хотите удалить?')){
+        const index = this.groupData.findIndex((elem)=>elem.id === id)
+        const before = this.groupData.slice(0,index)
+        const after = this.groupData.slice(index+1)
+        const newGroupData = [...before,...after]
+        this.groupData = newGroupData
+        console.log(id)
+      }           
     },
     deleteItem(id, idGroup) {
-        
+       if(confirm('Вы действительно хотите удалить?')){ 
         const indexGroup = this.groupData.findIndex((elem)=>elem.id === idGroup)
         const index = this.groupData[indexGroup].group.findIndex((elem)=>elem.id === id)
          
@@ -181,15 +191,18 @@ export default {
             const after = this.groupData[indexGroup].group.slice(index+1)
             const newGroupList = [...before,...after]           
           
-         this.groupData[indexGroup].group = newGroupList          
+         this.groupData[indexGroup].group = newGroupList 
+      }
     }       
   },    
 
    
   data() {
     return {
-      modalVisible: false,
+      filter:'name',
+      term: '',
       modalApply: false,
+      modalVisible: false,      
       input: null,
       textArea: null,
       textAreaVisible: false,

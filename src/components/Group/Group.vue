@@ -2,7 +2,7 @@
     <li class="group">
         <div class="group__header">
             <div class="group__title flex-center">
-                {{items.title}}
+                {{items.title | uppercase}}
             </div>
             <div class="group__controls flex-center">               
                 <div 
@@ -43,7 +43,12 @@ import GroupItem from './GroupItem'
             deleteItem(id){
                 this.$emit('onDelItem', id, this.items.id)               
             }
+        },
+        filters: {
+        uppercase(value) {           
+            return value.toUpperCase()
         }
+    }
     }
 </script>
 
