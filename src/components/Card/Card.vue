@@ -1,6 +1,11 @@
 <template>
-    <li class="card"
-        v-bind:class="{cardopened: cardtoggle}">
+    <li 
+        class="card drag-card"
+        draggable="true"
+        v-on:dragstart="dragStart"
+        v-on:dragend="dragEnd"
+        v-bind:class="{cardopened: cardtoggle, hide: cardHide}"        
+        >
         <div class="card__header flex-between">
             <div 
                 class="card__title flex-center"
@@ -43,7 +48,19 @@ export default {
     },
     data() {
         return {
-            cardtoggle: false
+            cardtoggle: false,
+            cardHide: false
+        }
+    },
+    methods: {
+        dragStart() {
+            setTimeout(()=>{
+                this.cardHide = true
+            },0)
+          
+        },
+        dragEnd() {
+            this.cardHide = false
         }
     },
     filters: {
@@ -57,10 +74,11 @@ export default {
 
 
 <style>
+
     .card {
         display: flex;
         flex-direction: column;
-        width: 200px;
+        max-width: 200px;
         height: 75px;      
         background:#f0f4c3 ;       
         margin: 1.2rem 0.6rem;
@@ -68,6 +86,9 @@ export default {
         border-radius: 5px;
       
     }
+        .hide {
+            display: none;
+        }
         .cardopened {
             height: 100%;         
         }

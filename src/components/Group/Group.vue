@@ -1,5 +1,7 @@
 <template>
-    <li class="group">
+    <li class="group"
+        v-bind:class="{hovered: hovered}"
+    >
         <div class="group__header">
             <div class="group__title flex-center">
                 {{items.title | uppercase}}
@@ -12,8 +14,14 @@
             </div>                     
         </div>
         <div class="group__body">
-           <ul class="group__list">
-             
+           <ul 
+            class="group__list"
+            v-on:dragover="dragOver"
+            v-on:dragenter="dragEnter"
+            v-on:dragleave="dragLeave"
+            v-on:drop="dragDrop"
+            
+           >             
                <GroupItem
                     v-for="item in filteredItems()" 
                     v-bind:key="item.id"
@@ -33,9 +41,29 @@ import GroupItem from './GroupItem'
             GroupItem
         },
         props: ['items','filterGroup'],      
-        
+        data(){
+            return {
+                hovered: false
+            }
+        },
         methods: {
-           filteredItems() {
+            dragOver(evt) {
+                console.log('dragOver')
+                evt.preventDefault()
+            },
+            dragEnter() {
+                console.log('enter')
+                this.hovered=true
+            },
+            dragLeave() {
+                console.log('leave')
+                this.hovered=false
+            },
+            dragDrop() {
+                console.log('drop')
+                this.hovered=false
+            },
+            filteredItems() {
                if(this.filterGroup === 'done'){
                     return this.items.group.filter(item => item.completed === true)
                }
@@ -43,7 +71,7 @@ import GroupItem from './GroupItem'
                     return this.items.group
                }
                
-           },
+            },
             deleteItem(id){
                 this.$emit('onDelItem', id, this.items.id)               
             }
@@ -68,6 +96,9 @@ import GroupItem from './GroupItem'
         border: 0.1rem solid #f0f4c3;
         border-radius: 5px;
     }
+        .hovered {
+            box-shadow: 0 0 8px rgba(224, 205, 255, 0.801);
+        }
         .group:first-child {
             margin: 1.2rem 0.6rem 1.2rem 1.2rem;
         }

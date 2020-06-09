@@ -1,12 +1,15 @@
 <template>
-    <ul class="grouplist">      
+    <ul class="grouplist"
+    >      
         <Group 
+        
             v-for="(items, index) in filteredGroups(this.groupData, this.groupTerm)"
             v-bind:key="`${index}`"
             v-bind:items="items"
-            v-bind:filterGroup="filterGroup"
+            v-bind:filterGroup="filterGroup"           
             @onDelGroup="deleteGroup"
             @onDelItem="deleteItem"
+           
         />
     </ul>    
 </template>
@@ -25,6 +28,7 @@ export default {
         }
     },
     methods: {
+        
         filteredGroups(groupData, groupTerm) {
            if(this.filterGroup === "name") {
                 if(groupTerm === 0) {

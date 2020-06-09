@@ -116,12 +116,16 @@ export default {
     Modal
   },
   methods: {
+    dragAndDrop() {
+     
+      
+    },
     setTerm(term) {
       this.term = term
     },
     setGroupTerm(term) {
       this.groupTerm=term
-      console.log(term)
+      console.log()
     },
     filterByName() {
       this.filter = 'name' 
@@ -275,7 +279,8 @@ export default {
 }
 </script>
 
-<style>
+<style> 
+ 
   .app {
     font-family: 'Roboto', sans-serif;
     display: grid;
