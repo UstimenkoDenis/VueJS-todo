@@ -29,13 +29,19 @@
           <div class="group-list__header-title">
             Списки задач
           </div>
-          <ToDoFilter/>
+          <ToDoFilter
+              @filterByName ="filterGroupByName"
+              @filterByDone ="filterGroupByDone"
+              @term = "setGroupTerm"
+          />
         </div>
         <div class="group-list__body">
           <GroupList 
-              v-bind:groupData="groupData"
-              @onDelGroup="deleteGroup"
-              @onDelItem="deleteItem"
+              v-bind:groupData = "groupData"
+              v-bind:filterGroup = "filterGroup"
+              v-bind:groupTerm = "groupTerm"
+              @onDelGroup = "deleteGroup"
+              @onDelItem = "deleteItem"
           />
         </div>
       </div>
@@ -113,16 +119,25 @@ export default {
     setTerm(term) {
       this.term = term
     },
+    setGroupTerm(term) {
+      this.groupTerm=term
+      console.log(term)
+    },
     filterByName() {
-      this.filter = 'name'
-      console.log(this.filter)
-     
+      this.filter = 'name' 
     },
-    filterByDone() {
+     filterByDone() {
       this.filter = 'done'
-            console.log(this.filter)
-
     },
+    filterGroupByDone() {
+      this.filterGroup = 'done'
+      console.log(this.filterGroup)
+    },
+    filterGroupByName() {
+      this.filterGroup = 'name'
+            console.log(this.filterGroup)
+
+    },   
     createElement(choise){
       if(choise) {       
         this.addCard(this.input, this.textArea)
@@ -200,7 +215,9 @@ export default {
   data() {
     return {
       filter:'name',
+      filterGroup: 'name',
       term: '',
+      groupTerm:'',
       modalApply: false,
       modalVisible: false,      
       input: null,

@@ -15,7 +15,7 @@
            <ul class="group__list">
              
                <GroupItem
-                    v-for="item in items.group" 
+                    v-for="item in filteredItems()" 
                     v-bind:key="item.id"
                     v-bind:item="item"
                     v-on:onDelItem="deleteItem"
@@ -32,14 +32,18 @@ import GroupItem from './GroupItem'
         components: {
             GroupItem
         },
-        props: {
-            items: {
-                type: Object,
-                required: true
-            }
-        },
+        props: ['items','filterGroup'],      
+        
         methods: {
-           
+           filteredItems() {
+               if(this.filterGroup === 'done'){
+                    return this.items.group.filter(item => item.completed === true)
+               }
+               if(this.filterGroup === 'name'){
+                    return this.items.group
+               }
+               
+           },
             deleteItem(id){
                 this.$emit('onDelItem', id, this.items.id)               
             }
