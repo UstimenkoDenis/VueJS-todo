@@ -20,7 +20,8 @@
               v-bind:cardsData = "cardsData"
               v-bind:term = "term"
               v-bind:filter = "filter"
-              @onDelete="deleteCard"
+              @onDelete = "deleteCard"
+              @onDragId = "onDragId"
           />     
         </div>         
       </div>
@@ -40,8 +41,11 @@
               v-bind:groupData = "groupData"
               v-bind:filterGroup = "filterGroup"
               v-bind:groupTerm = "groupTerm"
+              v-bind:dragId = "dragId"
+              v-bind:cardsData = "cardsData"
               @onDelGroup = "deleteGroup"
               @onDelItem = "deleteItem"
+              @addItem = "addItem" 
           />
         </div>
       </div>
@@ -116,9 +120,9 @@ export default {
     Modal
   },
   methods: {
-    dragAndDrop() {
+    onDragId(id) {
+     this.dragId = id
      
-      
     },
     setTerm(term) {
       this.term = term
@@ -151,6 +155,17 @@ export default {
         this.addGroup(this.input)
       } 
     },
+    addItem(id, groupId) {
+     
+      const indexGroup = this.groupData.findIndex((item)=>item.id === groupId)
+      const indexCard = this.cardsData.findIndex((item)=> item.id === id)
+      const newGroupItems = [...this.groupData[indexGroup].group]
+       console.log(id, groupId, indexGroup,indexCard)
+      newGroupItems.unshift(this.cardsData[indexCard])
+      return (
+        this.groupData[indexGroup].group = newGroupItems
+      )
+    },
     addCard(title, description) {
       const id = this.cardsData.length + 1
       const newCard = {
@@ -168,7 +183,7 @@ export default {
       
     },   
     deleteCard(id) {  
-      if(confirm('Вы действительно хотите удалить?')){
+      if(confirm('Вы действительно этого хотите?')){
         const index = this.cardsData.findIndex((elem)=>elem.id === id)
         const before = this.cardsData.slice(0,index)
         const after = this.cardsData.slice(index+1)
@@ -218,6 +233,7 @@ export default {
    
   data() {
     return {
+      dragId: 0,
       filter:'name',
       filterGroup: 'name',
       term: '',

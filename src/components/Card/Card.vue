@@ -25,7 +25,7 @@
                 ></div>  
                 <div 
                     class="delete-button"
-                    v-on:click="$emit('onDelete', card.id)"
+                    v-on:click="onDelete(card.id)"
                 ></div>  
             </div>                     
         </div>
@@ -53,14 +53,20 @@ export default {
         }
     },
     methods: {
+        onDelete(id) {
+            return this.$emit('onDelete', id)
+        },
         dragStart() {
             setTimeout(()=>{
                 this.cardHide = true
+                console.log(this.card.id)
+                return this.$emit('onDragId', this.card.id)
             },0)
-          
+        
         },
         dragEnd() {
-            this.cardHide = false
+            this.cardHide = false  
+            this.onDelete(this.card.id)         
         }
     },
     filters: {

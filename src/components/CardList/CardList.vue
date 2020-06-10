@@ -5,6 +5,7 @@
             v-bind:key="card.id"
             v-bind:card="card"
             v-on:onDelete="deleteCard"
+            @onDragId = "onDragId"
         />
     </ul>    
 </template>
@@ -42,6 +43,9 @@ export default {
         deleteCard(id) {
            this.$emit('onDelete', id)
             
+        },
+        onDragId(id) {
+            return this.$emit('onDragId', id)
         }
     }
 }

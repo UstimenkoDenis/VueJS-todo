@@ -40,7 +40,7 @@ import GroupItem from './GroupItem'
         components: {
             GroupItem
         },
-        props: ['items','filterGroup'],      
+        props: ['items','filterGroup', 'dragId'],      
         data(){
             return {
                 hovered: false
@@ -61,7 +61,13 @@ import GroupItem from './GroupItem'
             },
             dragDrop() {
                 console.log('drop')
+                console.log(this.items.id)
                 this.hovered=false
+                console.log(`this dragid ${this.dragId}`)
+                this.addItem(this.dragId, this.items.id)
+            },
+            addItem(id, groupId) {
+                return this.$emit('addItem', id, groupId)
             },
             filteredItems() {
                if(this.filterGroup === 'done'){

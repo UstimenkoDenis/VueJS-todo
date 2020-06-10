@@ -6,9 +6,11 @@
             v-for="(items, index) in filteredGroups(this.groupData, this.groupTerm)"
             v-bind:key="`${index}`"
             v-bind:items="items"
-            v-bind:filterGroup="filterGroup"           
+            v-bind:filterGroup="filterGroup"  
+            v-bind:dragId="dragId"         
             @onDelGroup="deleteGroup"
             @onDelItem="deleteItem"
+            @addItem="addItem"
            
         />
     </ul>    
@@ -21,7 +23,7 @@ export default {
     components: {
         Group
     },
-    props: ['groupData', 'filterGroup', 'groupTerm'], 
+    props: ['groupData', 'filterGroup', 'groupTerm', 'dragId'], 
     data() {
         return { 
             
@@ -48,7 +50,10 @@ export default {
         },
         deleteItem(id, idGroup) {
             this.$emit('onDelItem', id, idGroup)
-        }
+        },
+        addItem(id, idGroup) {
+                return this.$emit('addItem', id, idGroup)
+        },
     }   
 }
 </script>
