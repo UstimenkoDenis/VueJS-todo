@@ -58,8 +58,7 @@ export default {
         },
         dragStart() {
             setTimeout(()=>{
-                this.cardHide = true
-                console.log(this.card.id)
+                this.cardHide = true               
                 return this.$emit('onDragId', this.card.id)
             },0)
         

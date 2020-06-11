@@ -1,5 +1,10 @@
 <template>
-    <li class="group-item">
+    <li 
+        class="group-item"
+        draggable="true"
+        v-bind:class="{hide: itemHide}"        
+
+    >
         <div class="group-item__header flex-between">
             <div 
                 class="group-item__title flex-center"
@@ -37,9 +42,18 @@ export default {
     props: ['item'],
     data () {
         return {
-            toggle: false
+            toggle: false,
+            itemHide: false
         }
     },
+    methods: {
+        dragstart() {
+           setTimeout(()=>{
+                this.itemHide = true             
+                return this.$emit('onDragId', this.item.id)
+            },0) 
+        }
+    }
    
 }
 </script>

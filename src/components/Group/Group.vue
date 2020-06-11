@@ -71,10 +71,10 @@ import GroupItem from './GroupItem'
             },
             filteredItems() {
                if(this.filterGroup === 'done'){
-                    return this.items.group.filter(item => item.completed === true)
+                    return this.items.group.filter(item => item.completed === true )
                }
                if(this.filterGroup === 'name'){
-                    return this.items.group
+                    return this.items.group                    
                }
                
             },
@@ -154,6 +154,6 @@ import GroupItem from './GroupItem'
 
             .group__list {
                 padding: 0;
-
+                min-height: 200px;
             }
 </style>

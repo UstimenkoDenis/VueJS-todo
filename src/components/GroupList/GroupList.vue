@@ -1,8 +1,7 @@
 <template>
     <ul class="grouplist"
     >      
-        <Group 
-        
+        <Group        
             v-for="(items, index) in filteredGroups(this.groupData, this.groupTerm)"
             v-bind:key="`${index}`"
             v-bind:items="items"
@@ -10,8 +9,7 @@
             v-bind:dragId="dragId"         
             @onDelGroup="deleteGroup"
             @onDelItem="deleteItem"
-            @addItem="addItem"
-           
+            @addItem="addItem"           
         />
     </ul>    
 </template>

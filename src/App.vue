@@ -159,8 +159,12 @@ export default {
      
       const indexGroup = this.groupData.findIndex((item)=>item.id === groupId)
       const indexCard = this.cardsData.findIndex((item)=> item.id === id)
+      if(this.groupData[indexGroup].group.length === 0) {
+        return this.groupData[indexGroup].group = [this.cardsData[indexCard]] 
+      }
       const newGroupItems = [...this.groupData[indexGroup].group]
        console.log(id, groupId, indexGroup,indexCard)
+      
       newGroupItems.unshift(this.cardsData[indexCard])
       return (
         this.groupData[indexGroup].group = newGroupItems
@@ -183,20 +187,19 @@ export default {
       
     },   
     deleteCard(id) {  
-      if(confirm('Вы действительно этого хотите?')){
         const index = this.cardsData.findIndex((elem)=>elem.id === id)
         const before = this.cardsData.slice(0,index)
         const after = this.cardsData.slice(index+1)
         const newCardsData = [...before,...after]
         this.cardsData = newCardsData   
-        this.modalApply = false  
-      }              
+        this.modalApply = false                      
     },
     addGroup(title) {
       const id = this.groupData.length + 1
       const newGroup = {
         id,
-        title  
+        title,
+        group:[]  
       }
       const newGroupData = [...this.groupData]
       newGroupData.unshift(newGroup)
@@ -207,17 +210,14 @@ export default {
       
     },
     deleteGroup(id) {
-      if(confirm('Вы действительно хотите удалить?')){
         const index = this.groupData.findIndex((elem)=>elem.id === id)
         const before = this.groupData.slice(0,index)
         const after = this.groupData.slice(index+1)
         const newGroupData = [...before,...after]
         this.groupData = newGroupData
-        console.log(id)
-      }           
+        console.log(id)                 
     },
     deleteItem(id, idGroup) {
-       if(confirm('Вы действительно хотите удалить?')){ 
         const indexGroup = this.groupData.findIndex((elem)=>elem.id === idGroup)
         const index = this.groupData[indexGroup].group.findIndex((elem)=>elem.id === id)
          
@@ -225,8 +225,7 @@ export default {
             const after = this.groupData[indexGroup].group.slice(index+1)
             const newGroupList = [...before,...after]           
           
-         this.groupData[indexGroup].group = newGroupList 
-      }
+         this.groupData[indexGroup].group = newGroupList       
     }       
   },    
 
