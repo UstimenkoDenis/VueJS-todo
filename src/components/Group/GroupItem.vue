@@ -2,7 +2,9 @@
     <li 
         class="group-item"
         draggable="true"
-        v-bind:class="{hide: itemHide}"        
+        v-bind:class="{hide: itemHide}" 
+        v-on:dragstart="dragStart"    
+        v-on:dragend="dragEnd"    
 
     >
         <div class="group-item__header flex-between">
@@ -47,11 +49,17 @@ export default {
         }
     },
     methods: {
-        dragstart() {
+        dragStart() {
            setTimeout(()=>{
                 this.itemHide = true             
-                return this.$emit('onDragId', this.item.id)
+                return (
+                    this.$emit('onDragId', this.item.id),
+                    this.$emit('dragCardOrItem', 'item')
+                )
             },0) 
+        },
+        dragEnd() {           
+                this.itemHide = false             
         }
     }
    

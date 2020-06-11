@@ -9,7 +9,9 @@
             v-bind:dragId="dragId"         
             @onDelGroup="deleteGroup"
             @onDelItem="deleteItem"
-            @addItem="addItem"           
+            @addItem="addItem"  
+            @onDragId="onDragId"   
+            @dragCardOrItem="onDragItem"     
         />
     </ul>    
 </template>
@@ -28,7 +30,12 @@ export default {
         }
     },
     methods: {
-        
+        onDragId(id, itemsId) {
+            return this.$emit('onDragId', id, itemsId)
+        }, 
+        onDragItem() {
+            return this.$emit('dragCardOrItem', 'item')
+        },       
         filteredGroups(groupData, groupTerm) {
            if(this.filterGroup === "name") {
                 if(groupTerm === 0) {

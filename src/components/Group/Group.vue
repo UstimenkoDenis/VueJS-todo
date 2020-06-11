@@ -27,7 +27,8 @@
                     v-bind:key="item.id"
                     v-bind:item="item"
                     v-on:onDelItem="deleteItem"
-                    
+                    @onDragId="onDragId"
+                    @dragCardOrItem="onDragItem"
                 />              
            </ul>
         </div>
@@ -47,6 +48,12 @@ import GroupItem from './GroupItem'
             }
         },
         methods: {
+            onDragId(id) {
+                return this.$emit('onDragId', id, this.items.id) //
+            },
+            onDragItem() {
+                return this.$emit('dragCardOrItem', 'item')
+            },
             dragOver(evt) {
                 console.log('dragOver')
                 evt.preventDefault()
@@ -59,12 +66,9 @@ import GroupItem from './GroupItem'
                 console.log('leave')
                 this.hovered=false
             },
-            dragDrop() {
-                console.log('drop')
-                console.log(this.items.id)
-                this.hovered=false
-                console.log(`this dragid ${this.dragId}`)
-                this.addItem(this.dragId, this.items.id)
+            dragDrop() {               
+                this.hovered=false               
+                this.addItem(this.dragId, this.items.id)               
             },
             addItem(id, groupId) {
                 return this.$emit('addItem', id, groupId)

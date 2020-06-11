@@ -22,6 +22,7 @@
               v-bind:filter = "filter"
               @onDelete = "deleteCard"
               @onDragId = "onDragId"
+              @dragCardOrItem = "setDragCard"
           />     
         </div>         
       </div>
@@ -41,11 +42,13 @@
               v-bind:groupData = "groupData"
               v-bind:filterGroup = "filterGroup"
               v-bind:groupTerm = "groupTerm"
-              v-bind:dragId = "dragId"
+              v-bind:dragId = "dragId"              
               v-bind:cardsData = "cardsData"
               @onDelGroup = "deleteGroup"
               @onDelItem = "deleteItem"
               @addItem = "addItem" 
+              @onDragId = "onDragId"
+              @dragCardOrItem = "setDragItem"
           />
         </div>
       </div>
@@ -120,9 +123,19 @@ export default {
     Modal
   },
   methods: {
-    onDragId(id) {
+    onDragId(id, itemsId) {
      this.dragId = id
-     
+     this.itemsId = itemsId
+     console.log(`dragId = ${id}`)
+     console.log(`itemsId = ${itemsId}`)
+    },
+    setDragCard() {
+      this.dragCardOrItem = 'card'
+      console.log(this.dragCardOrItem)
+    },
+    setDragItem() {
+      this.dragCardOrItem = 'item'
+      console.log(this.dragCardOrItem)
     },
     setTerm(term) {
       this.term = term
@@ -156,19 +169,29 @@ export default {
       } 
     },
     addItem(id, groupId) {
-     
-      const indexGroup = this.groupData.findIndex((item)=>item.id === groupId)
-      const indexCard = this.cardsData.findIndex((item)=> item.id === id)
-      if(this.groupData[indexGroup].group.length === 0) {
-        return this.groupData[indexGroup].group = [this.cardsData[indexCard]] 
-      }
-      const newGroupItems = [...this.groupData[indexGroup].group]
-       console.log(id, groupId, indexGroup,indexCard)
+     if(this.dragCardOrItem == 'card') {
+        const indexGroup = this.groupData.findIndex((item)=>item.id === groupId)
+        const indexCard = this.cardsData.findIndex((item)=> item.id === id)
+        const newGroupItems = [...this.groupData[indexGroup].group]
+        newGroupItems.unshift(this.cardsData[indexCard])
+        this.deleteCard(this.cardsData[indexCard].id) // удаляю из карт
+        return (
+          this.groupData[indexGroup].group = newGroupItems // добавляю в группу
+        )
+     } else 
+     if(this.dragCardOrItem == 'item') {        
+        const indexGroup = this.groupData.findIndex((item)=>item.id === groupId) // индекс группы куда
+        const indexGroupFrom = this.groupData.findIndex((item)=>item.id === this.itemsId) // индекс группы откуда
+        const indexItem = this.groupData[indexGroupFrom].group.findIndex((item)=> item.id === id) // индекс item откуда
+        const newGroupItems = [...this.groupData[indexGroup].group]
+        newGroupItems.unshift(this.groupData[indexGroupFrom].group[indexItem])        
+
+        this.deleteItem(id, this.itemsId) // удаляю из списка
+        return (
+          this.groupData[indexGroup].group = newGroupItems // добавляю в группу
+        )
+     }
       
-      newGroupItems.unshift(this.cardsData[indexCard])
-      return (
-        this.groupData[indexGroup].group = newGroupItems
-      )
     },
     addCard(title, description) {
       const id = this.cardsData.length + 1
@@ -219,13 +242,12 @@ export default {
     },
     deleteItem(id, idGroup) {
         const indexGroup = this.groupData.findIndex((elem)=>elem.id === idGroup)
-        const index = this.groupData[indexGroup].group.findIndex((elem)=>elem.id === id)
-         
-            const before = this.groupData[indexGroup].group.slice(0,index)
-            const after = this.groupData[indexGroup].group.slice(index+1)
-            const newGroupList = [...before,...after]           
+        const index = this.groupData[indexGroup].group.findIndex((elem)=>elem.id === id)         
+        const before = this.groupData[indexGroup].group.slice(0,index)
+        const after = this.groupData[indexGroup].group.slice(index+1)
+        const newGroupList = [...before,...after]           
           
-         this.groupData[indexGroup].group = newGroupList       
+        this.groupData[indexGroup].group = newGroupList       
     }       
   },    
 
@@ -233,6 +255,8 @@ export default {
   data() {
     return {
       dragId: 0,
+      itemsId: 0,
+      dragCardOrItem:'',
       filter:'name',
       filterGroup: 'name',
       term: '',
@@ -258,33 +282,33 @@ export default {
                         {id: 5, title: "Купить",description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est fugiat nihil eos vel, ipsam doloremque perferendis architecto possimus saepe obcaecati laborum molestias neque eligendi cum dolore ipsa quod iure. Consectetur.", completed: false},
                         {id: 6, title: "Name2",description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est fugiat nihil eos vel, ipsam doloremque perferendis architecto possimus saepe obcaecati laborum molestias neque eligendi cum dolore ipsa quod iure. Consectetur.", completed: false},
                         {id: 7, title: "Name1",description: "Body1", completed: false},
-                        {id: 8, title: "Name1",description: "Body1", completed: false}
+                        {id: 8, title: "Na",description: "Body1", completed: false}
                     ]
                   },
                   { id: 2,
                     title: "Прочитать",
                     group: [
-                            {id: 9, title: "Name1",description: "Body1", completed: false},
-                            {id: 10, title: "Name2",description: "Body2", completed: false},
-                            {id: 11, title: "Name1",description: "Body1", completed: false}
+                            {id: 9, title: "Позвонить",description: "Body1", completed: false},
+                            {id: 10, title: "Повесить",description: "Body2", completed: false},
+                            {id: 11, title: "Налить",description: "Body1", completed: false}
                            
                     ]
                   },
                   { id: 3,
                     title: "Купить",
                     group: [
-                        {id: 5, title: "Купить",description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est fugiat nihil eos vel, ipsam doloremque perferendis architecto possimus saepe obcaecati laborum molestias neque eligendi cum dolore ipsa quod iure. Consectetur.", completed: false},
-                        {id: 6, title: "Name2",description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est fugiat nihil eos vel, ipsam doloremque perferendis architecto possimus saepe obcaecati laborum molestias neque eligendi cum dolore ipsa quod iure. Consectetur.", completed: false},
-                        {id: 7, title: "Name1",description: "Body1", completed: false},
-                        {id: 8, title: "Name1",description: "Body1", completed: false}
+                        {id: 12, title: "Купить",description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est fugiat nihil eos vel, ipsam doloremque perferendis architecto possimus saepe obcaecati laborum molestias neque eligendi cum dolore ipsa quod iure. Consectetur.", completed: false},
+                        {id: 13, title: "Съесть",description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est fugiat nihil eos vel, ipsam doloremque perferendis architecto possimus saepe obcaecati laborum molestias neque eligendi cum dolore ipsa quod iure. Consectetur.", completed: false},
+                        {id: 14, title: "Порешать",description: "Body1", completed: false},
+                        {id: 15, title: "Выпить",description: "Body1", completed: false}
                     ]
                   },
                   { id: 4,
                     title: "Прочитать",
                     group: [
-                            {id: 9, title: "Name1",description: "Body1", completed: false},
-                            {id: 10, title: "Name2",description: "Body2", completed: false},
-                            {id: 11, title: "Name1",description: "Body1", completed: false}
+                            {id: 16, title: "Устранить",description: "Body1", completed: false},
+                            {id: 17, title: "Включить",description: "Body2", completed: false},
+                            {id: 18, title: "Поесть",description: "Body1", completed: false}
                            
                     ]
                   }                                   

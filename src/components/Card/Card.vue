@@ -59,13 +59,15 @@ export default {
         dragStart() {
             setTimeout(()=>{
                 this.cardHide = true               
-                return this.$emit('onDragId', this.card.id)
+                return (
+                    this.$emit('onDragId', this.card.id),
+                    this.$emit('dragCardOrItem', 'card')
+                )
             },0)
         
         },
         dragEnd() {
-            this.cardHide = false  
-            this.onDelete(this.card.id)         
+            this.cardHide = false                    
         }
     },
     filters: {
