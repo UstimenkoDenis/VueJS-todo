@@ -201,8 +201,8 @@ export default {
       }
 
     },
-    addCard(title, description) {
-      const id = this.cardsData.length + 1
+    addCard(title, description) {      
+      const id = `f${(+new Date).toString(16)}`;  // уникальный id 
       const newCard = {
         id,
         title,
@@ -224,8 +224,8 @@ export default {
         this.cardsData = newCardsData   
         this.modalApply = false                      
     },
-    addGroup(title) {
-      const id = this.groupData.length + 1
+    addGroup(title) {      
+      const id = `f${(+new Date).toString(16)}`;  // уникальный id  
       const newGroup = {
         id,
         title,
