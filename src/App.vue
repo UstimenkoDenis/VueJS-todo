@@ -280,44 +280,7 @@ export default {
         {id: 3, title: "Прочитать",description: "JS Николас Закас", completed: false},
         {id: 4, title: "Посмотреть",description: "Netflix", completed: false}        
       ],
-      groupData: [
-                  { id: 1,
-                    title: "Купить",
-                    group: [
-                        {id: 5, title: "Продать",description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est fugiat nihil eos vel, ipsam doloremque perferendis architecto possimus saepe obcaecati laborum molestias neque eligendi cum dolore ipsa quod iure. Consectetur.", completed: false},
-                        {id: 6, title: "Положить",description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est fugiat nihil eos vel, ipsam doloremque perferendis architecto possimus saepe obcaecati laborum molestias neque eligendi cum dolore ipsa quod iure. Consectetur.", completed: false},
-                        {id: 7, title: "Увидеть",description: "чудо", completed: false},
-                        {id: 8, title: "Слетать",description: "в отпуск", completed: false}
-                    ]
-                  },
-                  { id: 2,
-                    title: "Прочитать",
-                    group: [
-                            {id: 9, title: "Позвонить",description: "другу", completed: false},
-                            {id: 10, title: "Повесить",description: "картину", completed: false},
-                            {id: 11, title: "Налить",description: "сока", completed: false}
-                           
-                    ]
-                  },
-                  { id: 3,
-                    title: "Купить",
-                    group: [
-                        {id: 12, title: "Налить",description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est fugiat nihil eos vel, ipsam doloremque perferendis architecto possimus saepe obcaecati laborum molestias neque eligendi cum dolore ipsa quod iure. Consectetur.", completed: false},
-                        {id: 13, title: "Съесть",description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est fugiat nihil eos vel, ipsam doloremque perferendis architecto possimus saepe obcaecati laborum molestias neque eligendi cum dolore ipsa quod iure. Consectetur.", completed: false},
-                        {id: 14, title: "Проплыть",description: "километр", completed: false},
-                        {id: 15, title: "Выпить",description: "воды", completed: false}
-                    ]
-                  },
-                  { id: 4,
-                    title: "Прочитать",
-                    group: [
-                            {id: 16, title: "Устранить",description: "неполадки", completed: false},
-                            {id: 17, title: "Включить",description: "телевизор", completed: false},
-                            {id: 18, title: "Поесть",description: "Пирожки", completed: false}
-                           
-                    ]
-                  }                                   
-      ]          
+      groupData: []         
     }
   }
 }
