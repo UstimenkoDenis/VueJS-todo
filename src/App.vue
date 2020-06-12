@@ -101,12 +101,7 @@
     </nav>
     <footer class="page-footer flex-center">
       ustimenkodenis@mail.ru
-    </footer> 
-   <Modal 
-      v-if="modalVisible"
-      @close="closeModal"
-      @apply="closeModal"
-    />
+    </footer>    
   </div>
 </template>
 
@@ -114,15 +109,13 @@
 import ToDoFilter from './components/ToDoFilter/ToDoFilter'
 import CardList from './components/CardList/CardList'
 import GroupList from './components/GroupList/GroupList'
-import Modal from './components/Modal/Modal'
 
 export default {
   name: 'App',
   components: {
     ToDoFilter,
     CardList,
-    GroupList,
-    Modal
+    GroupList  
   },
   methods: {
     onDragId(id, idGroupFrom) {
