@@ -1,5 +1,8 @@
 # vue-todo
 
+## Посмотреть как работает программа
+https://lit-chamber-56645.herokuapp.com/
+
 ## Project setup
 ```
 npm install
