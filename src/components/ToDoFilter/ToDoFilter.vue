@@ -48,19 +48,18 @@ export default {
     .filter {
         flex-grow: 1;
         display: flex; 
-        flex-wrap: wrap;     
+        flex-wrap: wrap;    
+        margin-top: 10px;   
+    }
+    @media (max-width: 768px) {
+      .filter {          
+         font-size: 30px;
+      }      
     }
     .filter__buttons {
         display: inline-flex;
     }
-    @media (max-width: 778px) {
-        .filter__input {
-            margin-top: 10px;                
-        }
-        .filter__buttons {
-            margin-top: 10px;            
-        }
-    }
+    
         .button-filter {
             position: relative;
             top: 0;
@@ -103,7 +102,13 @@ export default {
             flex-grow: 1;                 
             border: 1px solid #90caf9;          
   
-        }  
+        } 
+        @media (max-width: 744px ) {
+          .filter__input {
+             margin-top: 10px;
+          }  
+        }
+       
             .filter__input:active {
                 border: 1px solid #588ebb;
             }

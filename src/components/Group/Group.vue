@@ -95,12 +95,18 @@ import GroupItem from './GroupItem'
     .group {
         display: flex;
         flex-direction: column;
-        width: 200px;
+        min-width: 200px;
         height: 150px;      
         background:#f0f4c3 ;       
         margin: 1.2rem 0.6rem;
         border: 0.1rem solid #f0f4c3;
         border-radius: 5px;
+    }
+    @media (max-width: 768px) {
+      .group {
+         min-width: 400px;
+         height: 300px;
+      }      
     }
         .hovered {
             box-shadow: 0 0 8px rgba(224, 205, 255, 0.801);

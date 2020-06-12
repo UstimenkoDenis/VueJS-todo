@@ -1,6 +1,6 @@
 <template>
     <li 
-        class="card drag-card"
+        class="card"
         draggable="true"
         v-on:dragstart="dragStart"
         v-on:dragend="dragEnd"
@@ -82,13 +82,19 @@ export default {
     .card {
         display: flex;
         flex-direction: column;
-        max-width: 200px;
-        height: 75px;      
+        min-width: 200px;
+        height: 130px;      
         background:#f0f4c3 ;       
         margin: 1.2rem 0.6rem;
         border: 0.1rem solid #f0f4c3;
         border-radius: 5px;
       
+    }
+    @media (max-width: 768px) {
+      .card {
+         min-width: 400px;
+         height: 300px;
+      }      
     }
         .hide {
             display: none;
@@ -107,16 +113,18 @@ export default {
         }   
             .card__title {
                 flex-grow: 1;
+                
             }
             .card__controls {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                padding: 0 0.2rem;
+                padding: 0.1rem 0.2rem;
             }
             .checkbox {
                 width: 20px;
                 height: 20px;
+                margin: 0 4px;
             }
             .card-open-button {
                     position: relative;

@@ -292,7 +292,7 @@ export default {
     "nav article article"
     "footer footer footer";
     grid-template-rows: 80px 1fr 70px;
-    grid-template-columns: 20% 1fr 15%;
+    grid-template-columns: 20% 1fr 1fr;
     grid-row-gap: 10px;
     grid-column-gap: 10px;
     min-height: 100vh;
@@ -300,28 +300,19 @@ export default {
     padding: 0;    
   }
 
-  @media (max-width: 575px) {
+  @media (max-width: 768px) {
       .app {
           grid-template-areas:
           "header"
           "nav"
           "article"          
           "footer";
-          grid-template-rows: 30px 0.5fr 1fr 30px;
+          grid-template-rows: 30px 0.3fr 100% 30px;
           grid-template-columns: 1fr;
-          
-      }
-      .menu-button {
-        font-size: 8px;
-      }
+         font-size: 30px;
+      }      
   }
-  @media (max-width: 362px) {
-      .menu-button {
-        font-size: 2px;
-        margin-top: 0.3rem;
-      }     
-  }
-  
+    
   .page-header, .page-footer, .main-article, .main-nav {
       padding: 1.2rem;
       border-radius: 5px;
@@ -409,6 +400,11 @@ export default {
     grid-area: nav;
     background: #b2dfdb;
   }
+  @media (max-width: 575px) {
+      .main-nav {
+          padding-top: 0;         
+      }      
+  }
     .menu-button {
       position: relative;
       top: 0;
@@ -422,7 +418,12 @@ export default {
       font-size: 20px;
       transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     }
-      
+   
+    @media (max-width: 768px) {
+      .menu-button {
+        font-size: 24px;       
+      }     
+    }           
     .menu-button:hover {
       cursor: pointer;
       box-shadow: 0 0 5px rgba(48, 134, 126, 0.658);
