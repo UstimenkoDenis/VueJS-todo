@@ -204,19 +204,21 @@ export default {
       }
 
     },
-    addCard(title, description) {      
-      const id = `f${(+new Date).toString(16)}`;  // уникальный id 
-      const newCard = {
-        id,
-        title,
-        description,
-        completed: false
+    addCard(title, description) { 
+      if(title !== null){     
+        const id = `f${(+new Date).toString(16)}`;  // уникальный id 
+        const newCard = {
+          id,
+          title,
+          description,
+          completed: false
+        }
+        const newCardsData = [...this.cardsData]
+        newCardsData.unshift(newCard)      
+        return (
+          this.cardsData = newCardsData
+        )
       }
-      const newCardsData = [...this.cardsData]
-      newCardsData.unshift(newCard)      
-      return (
-        this.cardsData = newCardsData
-      )
       
     },   
     deleteCard(id) {  
@@ -227,19 +229,20 @@ export default {
         this.cardsData = newCardsData   
         this.modalApply = false                      
     },
-    addGroup(title) {      
-      const id = `f${(+new Date).toString(16)}`;  // уникальный id  
-      const newGroup = {
-        id,
-        title,
-        group:[]  
-      }
-      const newGroupData = [...this.groupData]
-      newGroupData.unshift(newGroup)      
-      return (
-        this.groupData = newGroupData
-      )
-      
+    addGroup(title) { 
+      if(title !== null){
+        const id = `f${(+new Date).toString(16)}`;  // уникальный id  
+        const newGroup = {
+          id,
+          title,
+          group:[]  
+        }
+        const newGroupData = [...this.groupData]
+        newGroupData.unshift(newGroup)      
+        return (
+          this.groupData = newGroupData
+        )
+      }       
     },
     deleteGroup(id) {
         const index = this.groupData.findIndex((elem)=>elem.id === id)
@@ -314,7 +317,7 @@ export default {
           "nav"
           "article"          
           "footer";
-          grid-template-rows: 30px 120px 1fr 30px;
+          grid-template-rows: 30px 0.5fr 1fr 30px;
           grid-template-columns: 1fr;
           
       }
@@ -325,6 +328,10 @@ export default {
   @media (max-width: 362px) {
       .menu-button {
         font-size: 2px;
+        margin-top: 0.3rem;
+      }
+      .main-nav__input {
+        margin: 1000;
       }
   }
   
