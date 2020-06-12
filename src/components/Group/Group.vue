@@ -94,8 +94,7 @@ import GroupItem from './GroupItem'
 <style>
     .group {
         display: flex;
-        flex-direction: column;
-        min-width: 200px;
+        flex-direction: column;       
         height: 150px;      
         background:#f0f4c3 ;       
         margin: 1.2rem 0.6rem;
@@ -115,7 +114,7 @@ import GroupItem from './GroupItem'
             margin: 1.2rem 0.6rem 1.2rem 1.2rem;
         }
         .group__header {           
-            width: 100%;
+            max-width: 100%;
             background: #fff;            
             color: #90caf9;
             display: flex;
@@ -127,7 +126,12 @@ import GroupItem from './GroupItem'
                 align-items: center;
             }
             .group__title {
-                flex-grow: 1;
+               max-width: 90%;
+            }
+            @media (max-width: 768px) {
+                .group__title {
+                    padding: 5px;
+                }      
             }
             .group__controls {
                 padding: 0 0.2rem;

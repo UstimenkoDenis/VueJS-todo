@@ -81,8 +81,7 @@ export default {
 
     .card {
         display: flex;
-        flex-direction: column;
-        min-width: 200px;
+        flex-direction: column;      
         height: 130px;      
         background:#f0f4c3 ;       
         margin: 1.2rem 0.6rem;
@@ -92,7 +91,7 @@ export default {
     }
     @media (max-width: 768px) {
       .card {
-         min-width: 400px;
+         /* min-width: 400px; */
          height: 300px;
       }      
     }
@@ -106,15 +105,19 @@ export default {
             margin: 1.2rem 0.6rem 1.2rem 1.2rem;
         }
         .card__header {
-            width: 100%;
-            height: 30px;
+            width: 100%;           
             background: #fff;
             color: #90caf9;           
-        }   
-            .card__title {
-                flex-grow: 1;
-                
+        } 
+        
+            .card__title {                 
+                /* max-width: 90%;                                         */
             }
+            @media (max-width: 768px) {
+                .card__title {
+                    padding: 5px;
+                }      
+            }  
             .card__controls {
                 display: flex;
                 justify-content: center;

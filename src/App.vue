@@ -302,15 +302,15 @@ export default {
 
   @media (max-width: 768px) {
       .app {
-          grid-template-areas:
-          "header"
-          "nav"
-          "article"          
-          "footer";
-          grid-template-rows: 30px 0.3fr 100% 30px;
-          grid-template-columns: 1fr;
-         font-size: 30px;
-      }      
+        grid-template-areas:
+        "header"
+        "nav"
+        "article"          
+        "footer";
+        grid-template-rows: 30px 0.3fr 100% 30px;
+        grid-template-columns: 1fr;
+        font-size: 30px;
+      }       
   }
     
   .page-header, .page-footer, .main-article, .main-nav {
@@ -351,7 +351,7 @@ export default {
       margin: 0;
       border: 1px solid #bbdefb;
       border-radius: 5px;   
-      min-width: 500px;    
+      min-width: 300px;    
     }
       .tasks__header {
         color:#90caf9 ;
@@ -378,7 +378,7 @@ export default {
       margin: 0;
       border: 1px solid #bbdefb;
       border-radius: 5px;   
-      min-width: 500px;    
+      min-width: 300px;    
     }
       .group-list__header {
         color:#90caf9 ;
@@ -483,5 +483,6 @@ export default {
           top: 2px;
           box-shadow: 0 0 0;
         }
+    
 
 </style>

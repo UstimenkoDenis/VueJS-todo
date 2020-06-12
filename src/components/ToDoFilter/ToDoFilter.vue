@@ -51,11 +51,7 @@ export default {
         flex-wrap: wrap;    
         margin-top: 10px;   
     }
-    @media (max-width: 768px) {
-      .filter {          
-         font-size: 30px;
-      }      
-    }
+   
     .filter__buttons {
         display: inline-flex;
     }
@@ -101,14 +97,14 @@ export default {
             color: #90caf9;
             flex-grow: 1;                 
             border: 1px solid #90caf9;          
-  
+    
         } 
-        @media (max-width: 744px ) {
+        @media (max-width: 580px ) {
           .filter__input {
-             margin-top: 10px;
+             margin-top: 10px;  
+             font-size: 24px;                
           }  
-        }
-       
+        }       
             .filter__input:active {
                 border: 1px solid #588ebb;
             }
