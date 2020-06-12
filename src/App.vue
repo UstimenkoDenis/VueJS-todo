@@ -173,17 +173,20 @@ export default {
           this.groupData[indexGroup].group = newGroupItems // добавляю в группу
         )
      } else 
-     if(this.dragCardOrItem == 'item') {        
-        const indexGroup = this.groupData.findIndex((item)=>item.id === groupId) // индекс группы куда
-        const indexGroupFrom = this.groupData.findIndex((item)=>item.id === this.idGroupFrom) // индекс группы откуда
-        const indexItem = this.groupData[indexGroupFrom].group.findIndex((item)=> item.id === id) // индекс item откуда
-        const newGroupItems = [...this.groupData[indexGroup].group]
-        newGroupItems.unshift(this.groupData[indexGroupFrom].group[indexItem])        
+     if(this.dragCardOrItem == 'item') {  
+       if(groupId !== this.idGroupFrom)  { // группа - откуда неравно группа -куда
+          const indexGroup = this.groupData.findIndex((item)=>item.id === groupId) // индекс группы куда
+          const indexGroupFrom = this.groupData.findIndex((item)=>item.id === this.idGroupFrom) // индекс группы откуда
+          const indexItem = this.groupData[indexGroupFrom].group.findIndex((item)=> item.id === id) // индекс item откуда
+          const newGroupItems = [...this.groupData[indexGroup].group]
+          newGroupItems.unshift(this.groupData[indexGroupFrom].group[indexItem])        
 
-        this.deleteItem(id, this.idGroupFrom) // удаляю из списка группы
-        return (
-          this.groupData[indexGroup].group = newGroupItems // добавляю в группу
-        )
+          this.deleteItem(id, this.idGroupFrom) // удаляю из списка группы
+          return (
+            this.groupData[indexGroup].group = newGroupItems // добавляю в группу
+          )
+       }    
+        
      }
       
     },
