@@ -54,16 +54,13 @@ import GroupItem from './GroupItem'
             onDragItem() {
                 return this.$emit('dragCardOrItem', 'item')
             },
-            dragOver(evt) {
-                console.log('dragOver')
+            dragOver(evt) {                
                 evt.preventDefault()
             },
-            dragEnter() {
-                console.log('enter')
+            dragEnter() {               
                 this.hovered=true
             },
-            dragLeave() {
-                console.log('leave')
+            dragLeave() {                
                 this.hovered=false
             },
             dragDrop() {               

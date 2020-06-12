@@ -30,8 +30,8 @@ export default {
         }
     },
     methods: {
-        onDragId(id, itemsId) {
-            return this.$emit('onDragId', id, itemsId)
+        onDragId(id, idGroupFrom) {
+            return this.$emit('onDragId', id, idGroupFrom)
         }, 
         onDragItem() {
             return this.$emit('dragCardOrItem', 'item')

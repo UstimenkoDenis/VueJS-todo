@@ -1,5 +1,9 @@
 <template>
-    <ul class="cardlist">        
+    <ul 
+        class="cardlist"
+        v-on:dragover="dragOver"       
+        v-on:drop="dragDrop"
+    >        
         <Card 
             v-for="card in filteredCards(this.cardsData, this.term)"
             v-bind:key="card.id"
@@ -17,13 +21,22 @@ export default {
     components: {
         Card
     },
-    props: ['cardsData', 'term', 'filter'], 
+    props: ['cardsData', 'term', 'filter', 'dragId'], 
     data() {
         return {
                       
         }
     },
     methods: {
+        dragOver(evt){
+            evt.preventDefault()
+        },
+        dragDrop() {
+            this.addItemInList(this.dragId)
+        },
+        addItemInList(dragId) {
+           return this.$emit('addItemInList', dragId)
+        },
         filteredCards(cardsData, term) {
             if(this.filter === 'done') {
                 return cardsData.filter(card=>card.completed)
@@ -61,6 +74,7 @@ export default {
         padding: 0;
         margin: 0;
         width: 100%;
+        min-height: 100%;
         overflow-x: scroll;  
     }
     .cardlist::-webkit-scrollbar {height:0px;}
