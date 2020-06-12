@@ -179,8 +179,7 @@ export default {
           const indexGroupFrom = this.groupData.findIndex((item)=>item.id === this.idGroupFrom) // индекс группы откуда
           const indexItem = this.groupData[indexGroupFrom].group.findIndex((item)=> item.id === id) // индекс item откуда
           const newGroupItems = [...this.groupData[indexGroup].group]
-          newGroupItems.unshift(this.groupData[indexGroupFrom].group[indexItem])        
-
+          newGroupItems.unshift(this.groupData[indexGroupFrom].group[indexItem])
           this.deleteItem(id, this.idGroupFrom) // удаляю из списка группы
           return (
             this.groupData[indexGroup].group = newGroupItems // добавляю в группу
@@ -195,8 +194,7 @@ export default {
         const indexGroupFrom = this.groupData.findIndex((item)=>item.id === this.idGroupFrom) // индекс группы откуда
         const indexItem = this.groupData[indexGroupFrom].group.findIndex((item)=> item.id === id) // индекс item откуда
         const newCardsData = [...this.cardsData]
-        newCardsData.unshift(this.groupData[indexGroupFrom].group[indexItem])        
-
+        newCardsData.unshift(this.groupData[indexGroupFrom].group[indexItem]) 
         this.deleteItem(id, this.idGroupFrom) // удаляю из списка группы
         return (
           this.cardsData = newCardsData // добавляю в список
@@ -256,8 +254,7 @@ export default {
         const index = this.groupData[indexGroup].group.findIndex((elem)=>elem.id === id)         
         const before = this.groupData[indexGroup].group.slice(0,index)
         const after = this.groupData[indexGroup].group.slice(index+1)
-        const newGroupList = [...before,...after]           
-          
+        const newGroupList = [...before,...after]         
         this.groupData[indexGroup].group = newGroupList       
     }       
   },    
@@ -329,10 +326,7 @@ export default {
       .menu-button {
         font-size: 2px;
         margin-top: 0.3rem;
-      }
-      .main-nav__input {
-        
-      }
+      }     
   }
   
   .page-header, .page-footer, .main-article, .main-nav {

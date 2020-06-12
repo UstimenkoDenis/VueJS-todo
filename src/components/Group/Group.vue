@@ -76,8 +76,7 @@ import GroupItem from './GroupItem'
                }
                if(this.filterGroup === 'name'){
                     return this.items.group                    
-               }
-               
+               }               
             },
             deleteItem(id){
                 this.$emit('onDelItem', id, this.items.id)               

@@ -5,7 +5,6 @@
         v-bind:class="{hide: itemHide}" 
         v-on:dragstart="dragStart"    
         v-on:dragend="dragEnd"    
-
     >
         <div class="group-item__header flex-between">
             <div 
@@ -61,8 +60,7 @@ export default {
         dragEnd() {           
                 this.itemHide = false             
         }
-    }
-   
+    }   
 }
 </script>
 
@@ -131,7 +129,6 @@ export default {
             padding: 0.4rem 0.2rem 0 0.3rem;
             background: #fff; 
             color: rgba(0, 0, 0, 0.61)
-
         }
             .opened {
                 display: block;

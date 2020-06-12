@@ -17,10 +17,8 @@
         <input 
             class = "filter__input"
             type="text"  
-            v-model ="text"
-           
+            v-model ="text"           
         >
-
     </div>        
 </template>   
 <script>

@@ -30,8 +30,7 @@
             </div>                     
         </div>
         <div
-            class="card__body"
-            
+            class="card__body"            
         >
             {{card.description}}
         </div>
@@ -63,16 +62,14 @@ export default {
                     this.$emit('onDragId', this.card.id),
                     this.$emit('dragCardOrItem', 'card')
                 )
-            },0)
-        
+            },0)        
         },
         dragEnd() {
             this.cardHide = false                    
         }
     },
     filters: {
-        uppercase(value) {
-           
+        uppercase(value) {           
             return value.toUpperCase()
         }
     }
@@ -146,6 +143,5 @@ export default {
             padding: 0.8rem;
             color: rgba(0, 0, 0, 0.61);
             overflow: hidden;
-        }
-        
+        }        
 </style>

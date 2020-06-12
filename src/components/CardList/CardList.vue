@@ -40,8 +40,7 @@ export default {
         filteredCards(cardsData, term) {
             if(this.filter === 'done') {
                 return cardsData.filter(card=>card.completed)
-            }
-                             
+            }                             
             if(this.filter === 'name') {            
                 if(term.length === 0) {
                     return cardsData
@@ -49,14 +48,11 @@ export default {
                         return cardsData.filter((card)=>{
                         return (card.title).toUpperCase().indexOf(term.toUpperCase()) > -1
                     })
-                }
-               
-            }        
-            
+                }               
+            }            
         },
         deleteCard(id) {
-           this.$emit('onDelete', id)
-            
+           this.$emit('onDelete', id)            
         },
         onDragId(id) {
             return this.$emit('onDragId', id)
