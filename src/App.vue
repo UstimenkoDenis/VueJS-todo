@@ -331,7 +331,7 @@ export default {
         margin-top: 0.3rem;
       }
       .main-nav__input {
-        margin: 1000;
+        
       }
   }
   
@@ -380,7 +380,8 @@ export default {
         font-size: 20px;        
         display: flex;
         flex-wrap: wrap;
-        padding: 1.2rem 1.2rem 0 1.2rem;
+        padding: 1rem;
+        align-items: center;
       }
         .tasks__header-title {
           display:inline-block;   
@@ -407,7 +408,8 @@ export default {
         padding: 0;
         display: flex;
         flex-wrap: wrap;      
-        padding: 1.2rem 1.2rem 0 1.2rem;
+        padding: 1rem;
+        align-items: center;
       }
         .group-list__header-title {
           display:inline-block;   
@@ -452,8 +454,8 @@ export default {
       }
       .main-nav__input {
         margin-top: 1.2rem;
-        margin: 10px auto;
-        min-width: 100px;
+       
+        width: 100%;
         min-height: 30px;
         font-size: 20px;
         display: block;
@@ -463,7 +465,7 @@ export default {
       .main-nav__text-area {
           margin-top: 1.2rem;
           margin: 10px auto;
-          min-width: 100px;
+          width: 100%;
           min-height: 130px;
           font-size: 20px;
           display: block;

@@ -55,7 +55,7 @@ export default {
     .filter__buttons {
         display: inline-flex;
     }
-    @media (max-width: 575px) {
+    @media (max-width: 778px) {
         .filter__input {
             margin-top: 10px;                
         }
@@ -103,7 +103,7 @@ export default {
             display: block;
             color: #90caf9;
             flex-grow: 1;                 
-            border: 1px solid #90caf9;
+            border: 1px solid #90caf9;          
   
         }  
             .filter__input:active {
