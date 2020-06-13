@@ -312,7 +312,11 @@ export default {
         font-size: 30px;
       }       
   }
-    
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }  
   .page-header, .page-footer, .main-article, .main-nav {
       padding: 1.2rem;
       border-radius: 5px;
