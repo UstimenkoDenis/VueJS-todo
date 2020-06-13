@@ -105,7 +105,8 @@ export default {
             margin: 1.2rem 0.6rem 1.2rem 1.2rem;
         }
         .card__header {
-            width: 100%;           
+            width: 100%;      
+            min-height: 36px;     
             background: #fff;
             color: #90caf9;           
         } 
