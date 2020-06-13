@@ -111,7 +111,7 @@ export default {
         } 
         
             .card__title {                 
-               padding: 0 0.4rem;                                                        
+               padding: 0.3rem 0.4rem;                                                        
             }
             @media (max-width: 768px) {
                 .card__title {
