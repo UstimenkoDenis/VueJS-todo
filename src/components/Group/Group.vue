@@ -2,11 +2,11 @@
     <li class="group"
         v-bind:class="{hovered: hovered}"
     >
-        <div class="group__header">
+        <div class="group__header flex-between">
             <div class="group__title flex-center">
                 {{items.title | uppercase}}
             </div>
-            <div class="group__controls flex-center">               
+            <div class="group__controls">               
                 <div 
                     class="delete-button"
                     v-on:click="$emit('onDelGroup', items.id)"
@@ -93,9 +93,10 @@ import GroupItem from './GroupItem'
 
 <style>
     .group {
-        display: flex;
+        min-width: 200px;
+        display: flex;      
         flex-direction: column;       
-        height: 150px;      
+        height: 130px;      
         background:#f0f4c3 ;       
         margin: 1.2rem 0.6rem;
         border: 0.1rem solid #f0f4c3;
@@ -103,7 +104,7 @@ import GroupItem from './GroupItem'
     }
     @media (max-width: 768px) {
       .group {
-         min-width: 400px;
+         /* min-width: 400px; */
          height: 300px;
       }      
     }
@@ -114,19 +115,13 @@ import GroupItem from './GroupItem'
             margin: 1.2rem 0.6rem 1.2rem 1.2rem;
         }
         .group__header {           
-            max-width: 100%;
+            width: 100%;
             background: #fff;            
-            color: #90caf9;
-            display: flex;
-            justify-content: space-between;
+            color: #90caf9;           
         }   
-            .flex-center {
-                display:flex;
-                justify-content: center;
-                align-items: center;
-            }
+        
             .group__title {
-               max-width: 90%;
+                padding: 0 0.4rem;
             }
             @media (max-width: 768px) {
                 .group__title {
@@ -134,7 +129,10 @@ import GroupItem from './GroupItem'
                 }      
             }
             .group__controls {
-                padding: 0 0.2rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0.1rem 0.2rem;
             }
             .delete-button {
                 position: relative;
@@ -144,7 +142,7 @@ import GroupItem from './GroupItem'
                 height:20px;
                 background: #ffcdd2 ; 
                 border-radius: 50%;
-                margin: 0.4rem 0;
+                margin: 0.4rem 0.3rem;
             }
                 .delete-button:hover {
                     cursor: pointer;

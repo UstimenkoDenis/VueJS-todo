@@ -13,7 +13,7 @@
             >
                 {{item.title}}
             </div>
-            <div class="group-item__controls flex-center">
+            <div class="group-item__controls flex-between">
                 <input 
                     class="item-checkbox" 
                     v-on:change="item.completed = !item.completed" 
@@ -67,7 +67,7 @@ export default {
 <style>
     .group-item {
         width: 100%;
-        /* height: 30px; */
+        padding: 0.2rem;
         background: #f9fbe7;
         list-style: none;
         margin: 0.1rem 0;        
@@ -79,13 +79,13 @@ export default {
         }
         .group-item__header {
             padding: 0.2rem 0.2rem 0 0.3rem;           
-            height: 30px;           
+            min-height: 30px;           
         }
             .group-item__controls {
-                padding: 0 0.2rem;
+                padding: 0 0.2rem 0 0.6rem;
             }
                 .item-checkbox {
-                    
+                    margin: 0 0.2rem;
                 }
                 .item-open-button {
                     position: relative;

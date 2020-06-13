@@ -111,7 +111,7 @@ export default {
         } 
         
             .card__title {                 
-                /* max-width: 90%;                                         */
+               padding: 0 0.4rem;                                                        
             }
             @media (max-width: 768px) {
                 .card__title {
@@ -127,7 +127,7 @@ export default {
             .checkbox {
                 width: 20px;
                 height: 20px;
-                margin: 0 4px;
+                margin: 0 0.4rem 0 0.6rem;
             }
             .card-open-button {
                     position: relative;
